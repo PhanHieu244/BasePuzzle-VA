@@ -17,10 +17,6 @@ namespace BasePuzzle.Modules.UI.Transition.Runtime
 
         internal void Setup(UITransitionConfig config)
         {
-            _progressBar.sprite = config.ProgressBar;
-            _progressBarBG.sprite = config.ProgressBarBG;
-            _background.sprite = config.Background;
-            
             _animationSpeed = config.AnimationSpeed;
             _pausePoints = config.PausePoints;
         }

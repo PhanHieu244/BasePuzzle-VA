@@ -12,14 +12,10 @@ namespace BasePuzzle.Modules.UI.Transition.Runtime
         public const string SETTINGS_NAME = "UITransitionConfig";
 
         [Header("Progress Bar:"), Space(5)]
-        [SerializeField] private Sprite _background;
-        [SerializeField] private Sprite _progressBar, _progressBarBG;
         [SerializeField] private float _animationSpeed = 3;
         [SerializeField, Space(6)] private List<PausePoint> _pausePoints;
         
         [Header("Iris Wipe:"), Space(7)]
-        [SerializeField] private Sprite _irisWipeBG;
-        [SerializeField] private Sprite _irisWipeLogo;
         [SerializeField, Range(0.5f, 1f)] private float _wipeInDurationBG = 0.62f;
         [SerializeField, Range(0.2f, 1f)] private float _wipeOutDurationBG = 0.256f;
         [SerializeField, Range(0.25f, 0.5f)] private float _wipeInDurationLogo = 0.3f;
@@ -30,14 +26,9 @@ namespace BasePuzzle.Modules.UI.Transition.Runtime
         [Header("Fading:"), Space(10)]
         [SerializeField] private float _fadeDuration;
 
-        public Sprite ProgressBarBG => _progressBarBG;
-        public Sprite ProgressBar => _progressBar;
-        public Sprite Background => _background;
         public float AnimationSpeed => _animationSpeed;
         public List<PausePoint> PausePoints => _pausePoints;
         
-        public Sprite IrisWipeBG => _irisWipeBG;
-        public Sprite IrisWipeLogo => _irisWipeLogo;
         public float WipeInDurationBG => _wipeInDurationBG;
         public float WipeOutDurationBG => _wipeOutDurationBG;
         public float WipeInDurationLogo => _wipeInDurationLogo;

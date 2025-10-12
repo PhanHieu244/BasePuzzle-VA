@@ -9,10 +9,10 @@ public class ValueRemoteConfig : ServerConfig
     public int coinRewardPassLevel = 20;
 
     public int  numLevelToShowBanner           = 19;
-    public int  numLevelToShowInterstitial     = 15;
+    public long  numLevelToShowInterstitial     = 9999999999999999;
     public bool showInterstitialWhenRetry      = false;
     public bool showInterstitialWhenGoHome     = false;
-    public int  numLevelToShowRewarded         = 15;
+    public long  numLevelToShowRewarded         = 9999999999999999;
     public int  numInterstitialToShowRemoveAds = 3;
     public int  numSecondsToReShowAds          = 90;
     public int  numLevelToGoHomeAfterPassLevel = 10;
