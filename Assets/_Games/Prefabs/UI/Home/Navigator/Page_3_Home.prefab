@@ -72,15 +72,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5945387d84d84dacb9710599cd83ff63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupSequence:
-  - condition:
-      rid: 5998326461222617282
+  popupSequence: []
   references:
     version: 2
-    RefIds:
-    - rid: 5998326461222617282
-      type: {class: RateGameCondition, ns: PuzzleGames, asm: Assembly-CSharp}
-      data: 
+    RefIds: []
 --- !u!1 &2408365840547962275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,7 +1868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3372704679167181379, guid: 62cbb2271fdb6ad48aa34496ba3ade4c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3372704679167181379, guid: 62cbb2271fdb6ad48aa34496ba3ade4c, type: 3}
       propertyPath: m_AnchorMin.x
@@ -1881,7 +1876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3372704679167181379, guid: 62cbb2271fdb6ad48aa34496ba3ade4c, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3372704679167181379, guid: 62cbb2271fdb6ad48aa34496ba3ade4c, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1921,11 +1916,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3372704679167181379, guid: 62cbb2271fdb6ad48aa34496ba3ade4c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 232
       objectReference: {fileID: 0}
     - target: {fileID: 3372704679167181379, guid: 62cbb2271fdb6ad48aa34496ba3ade4c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -5397.673
       objectReference: {fileID: 0}
     - target: {fileID: 3372704679167181379, guid: 62cbb2271fdb6ad48aa34496ba3ade4c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

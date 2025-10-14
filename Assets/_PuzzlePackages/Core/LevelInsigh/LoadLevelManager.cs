@@ -133,7 +133,7 @@ namespace BasePuzzle.PuzzlePackages.Core
             TextAsset levelData = Resources.Load<TextAsset>(level.ToString());
             if (levelData == null)
             {
-                Debug.LogError($"LevelLoader > Không tồn tại {level}");
+                //Debug.LogError($"LevelLoader > Không tồn tại {level}");
                 return string.Empty;
             }
 

@@ -12,7 +12,7 @@ namespace PuzzleGames
 
         public void SetLevel(Sprite bgSprite, int level, Color color)
         {
-            _background.sprite = bgSprite;
+            //_background.sprite = bgSprite;
             //_background.SetNativeSize();
             _txtLevel.text = level.ToString();
             _txtLevel.color = color;
