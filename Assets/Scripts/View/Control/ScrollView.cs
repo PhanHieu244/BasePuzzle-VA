@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Game;
+using PuzzleGames;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.UI;
@@ -107,6 +108,7 @@ namespace View.Control
 
        public void EnableScroll()
        {
+          LoadSceneManager.Instance.LoadScene("Home");
        }
 
        private void DisableScroll(float delay = 0f)
