@@ -8,7 +8,7 @@ using UnityEngine;
 namespace BasePuzzle.PuzzlePackages.Core
 {
     [CustomEditor(typeof(MonoCustomInspector), true)]
-    public class InspectorEditor : Editor
+    public class InspectorEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {

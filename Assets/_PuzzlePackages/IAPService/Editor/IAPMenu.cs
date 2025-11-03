@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BasePuzzle.PuzzlePackages.IAPService
 {
-    public class IAPMenu : Editor
+    public class IAPMenu : UnityEditor.Editor
     {
         [MenuItem("Puzzle/IAPService/IAP Settings")]
         public static void InAppPurchaseSettings()
