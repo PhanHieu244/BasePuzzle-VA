@@ -4,9 +4,14 @@ namespace View.Control
 {
     /// <summary>
     /// The main controller for the game's audio. Handles SFX along with looping music.
+    /// (MODIFIED to be a persistent Singleton and own its music AudioSource)
     /// </summary>
+    [RequireComponent(typeof(AudioSource))] // Tự động yêu cầu một AudioSource
     public class GameAudio : MonoBehaviour
     {
+        // --- BIẾN TOÀN CỤC (SINGLETON) ---
+        public static GameAudio Instance { get; private set; }
+
         private const string MusicStatusKey = "music.status";
         private const string SfxStatusKey = "sfx.status";
         
@@ -15,7 +20,11 @@ namespace View.Control
         public AudioClip[] MusicClips;
         public AudioClip[] SfxClips;
 
+        // --- AUDIO SOURCES ---
+        // _musicSource sẽ là component trên chính GameObject này (vĩnh viễn)
         private AudioSource _musicSource;
+        // Chúng ta vẫn có thể sử dụng LeanAudio cho SFX (fire-and-forget)
+        
         private int _musicVolumeTweenId;
         private bool _musicEnabled = true;
         public bool MusicEnabled
@@ -27,7 +36,15 @@ namespace View.Control
                 }
                 
                 _musicEnabled = value;
-                _musicSource.volume = value ? MusicVolume : 0f;
+                
+                // Thêm kiểm tra null an toàn
+                if (_musicSource != null) 
+                {
+                    _musicSource.volume = value ? MusicVolume : 0f;
+                    // Bổ sung: Bật/tắt nhạc ngay lập tức
+                    if (value && !_musicSource.isPlaying) _musicSource.Play();
+                    else if (!value) _musicSource.Stop();
+                }
                 PlayerPrefs.SetInt(MusicStatusKey, value ? 0 : 1);
             }
         }
@@ -42,10 +59,32 @@ namespace View.Control
             }
         }
 
+        // --- AWAKE (Hàm quan trọng nhất) ---
+        private void Awake()
+        {
+            // --- Thiết lập Singleton Pattern ---
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                // Nếu một GameAudio đã tồn tại, hãy phá hủy cái mới này
+                Destroy(gameObject);
+                return;
+            }
+
+            // --- Thiết lập Music Source ---
+            // Lấy AudioSource vĩnh viễn trên chính GameObject này
+            _musicSource = GetComponent<AudioSource>();
+            _musicSource.loop = true;
+            _musicSource.playOnAwake = false;
+        }
+
         private void Start()
         {
-            StartMusic();
-
+            // Tải cài đặt trước
             if (!PlayerPrefs.HasKey(MusicStatusKey)) {
                 PlayerPrefs.SetInt(MusicStatusKey, 0);
             }
@@ -55,10 +94,14 @@ namespace View.Control
 
             MusicEnabled = PlayerPrefs.GetInt(MusicStatusKey) == 0;
             SfxEnabled = PlayerPrefs.GetInt(SfxStatusKey) == 0;
+            
+            // Bắt đầu nhạc SAU KHI đã tải cài đặt
+            StartMusic();
         }
 
         /// <summary>
         /// Plays the given sound clip with the specified parameters.
+        /// (Hàm này vẫn ổn, LeanAudio rất tốt cho SFX)
         /// </summary>
         public void Play(GameClip clip, float delay = 0f, float volume = 1f, float startTime = 0f)
         {
@@ -72,24 +115,43 @@ namespace View.Control
         
         /// <summary>
         /// Plays the given music clip with the specifide parameters.
+        /// (ĐÃ SỬA LỖI: Bây giờ sử dụng _musicSource vĩnh viễn)
         /// </summary>
         public void Play(MusicClip clip, float fadeTime = 0f, float delay = 0f, float volume = 1f, float startTime = 0f)
         {
-            if (!enabled || !MusicEnabled) {
+            if (!enabled || _musicSource == null) {
                 return;
             }
             
             var audioClip = MusicClips[(uint) clip];
             
-            _musicSource = LeanAudio.play(audioClip, 0f, delay, true, startTime);
+            // --- XÓA DÒNG GÂY LỖI ---
+            // _musicSource = LeanAudio.play(audioClip, 0f, delay, true, startTime);
 
-            _musicVolumeTweenId = LeanTween.value(0f, volume, fadeTime)
-                .setDelay(delay)
-                .setEase(LeanTweenType.easeInOutSine)
-                .setOnUpdate(v => {
-                    _musicSource.volume = v;
-                })
-                .id;
+            // --- THAY BẰNG LOGIC NÀY ---
+            _musicSource.clip = audioClip;
+            _musicSource.time = startTime;
+            _musicSource.volume = 0f; // Bắt đầu từ 0 để fade-in
+
+            // Sử dụng delayedCall để xử lý độ trễ
+            LeanTween.delayedCall(delay, () => {
+                if (MusicEnabled) // Kiểm tra lại phòng khi người dùng tắt nhạc trong lúc chờ
+                {
+                    _musicSource.Play();
+                }
+
+                // Hủy bất kỳ tween âm lượng nào *trước đó*
+                LeanTween.cancel(_musicVolumeTweenId);
+
+                // Tạo tween mới trên GameObject *này* (GameObject này là vĩnh viễn)
+                _musicVolumeTweenId = LeanTween.value(gameObject, 0f, volume, fadeTime)
+                    .setEase(LeanTweenType.easeInOutSine)
+                    .setOnUpdate(v => {
+                        // _musicSource bây giờ được đảm bảo tồn tại
+                        _musicSource.volume = v;
+                    })
+                    .id;
+            });
         }
 
         private void StartMusic()

@@ -17,7 +17,7 @@ namespace PuzzleGames
 
         private string _previousScene;
         private bool   _isInProgress;
-        private bool   _isFirstLoad;
+        // private bool   _isFirstLoad; // Không cần thiết với logic mới
 
         protected override void Awake()
         {
@@ -41,55 +41,42 @@ namespace PuzzleGames
 
             yield return null;
 
-            if (!_isFirstLoad)
-            {
-                _isFirstLoad = true;
-                transitionManager.ProgressBarIn(() =>
-                {
-                    transitionManager.ProgressBarOut(null);
-                });
-                
-                var task = transitionManager.ProgressBarInAsync;
-
-                // Wait until the task completes
-                yield return new WaitUntil(() => task.IsCompleted);
-            }
+            // --- ĐÃ BỎ QUA LOGIC _isFirstLoad ---
             
+            // 1. Chờ hiệu ứng chuyển cảnh (Wipe In)
             var wipeInAsync = transitionManager.IrisWipeInAsync;
-            
             yield return new WaitUntil(() => wipeInAsync.IsCompleted);
             
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            // 2. Tải scene mới (NON-ADDITIVE)
+            // Đây là thay đổi quan trọng nhất. 
+            // LoadSceneAsync (không có Additive) sẽ tự động hủy scene cũ
+            // và bảo toàn các đối tượng DontDestroyOnLoad.
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName); 
             
             while (loadOperation is { isDone: false })
             {
                 yield return null;
             }
 
-            if (_previousScene != sceneName)
-            {
-                var unloadOperation = SceneManager.UnloadSceneAsync(_previousScene);
-                while (unloadOperation is { isDone: false })
-                {
-                    yield return null;
-                }
-            }
-            else
-            {
-                var first           = SceneManager.GetActiveScene();
-                var unloadOperation = SceneManager.UnloadSceneAsync(first);
-                while (unloadOperation is { isDone: false })
-                {
-                    yield return null;
-                }
-            }
+            // --- TOÀN BỘ LOGIC UNLOAD ĐÃ BỊ XÓA ---
+            // Vì SceneManager.LoadSceneAsync đã tự xử lý.
+
+            // 3. Kích hoạt scene mới (nên làm)
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
             
             yield return null;
 
+            // 4. Chạy hiệu ứng chuyển cảnh ra (Wipe Out)
             transitionManager.IrisWipeOut(null);
+
+            // 5. --- THÊM SỬA LỖI ---
+            // Ẩn LoadingCanvas (với thanh progress bar)
+            // Đây là dòng bị thiếu
+            transitionManager.ProgressBarOut(null); 
 
             _previousScene = sceneName;
             _isInProgress  = false;
         }
     }
 }
+
