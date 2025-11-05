@@ -14,7 +14,6 @@ namespace View.Control
         private ScrollView _scrollView;
 
         private Transform _moveDisplay;
-        private Transform _scrollHelper;
         private MenuRotator _buttonSelect;
         private GameObject _settings;
 
@@ -42,6 +41,7 @@ namespace View.Control
             { ButtonType.Settings, scrollView => scrollView.ToggleSettings() },
             { ButtonType.MusicToggle, scrollView => scrollView.ToggleMusic() },
             { ButtonType.SfxToggle, scrollView => scrollView.ToggleSfx() },
+            { ButtonType.PlusTime, scrollView  =>  scrollView.AddTime() }
         };
 
         public bool IsTweening => _buttonSelect.IsTweening;
@@ -51,7 +51,6 @@ namespace View.Control
             _scrollView = GameObject.FindGameObjectWithTag("MainView").GetComponent<ScrollView>();
 
             _moveDisplay = GetComponentInChildren<MoveDisplay>().transform;
-            _scrollHelper = GameObject.FindGameObjectWithTag("ScrollHelper").transform;
             _buttonSelect = GetComponentInChildren<MenuRotator>();
             _settings = GameObject.FindGameObjectWithTag("Settings");
 
@@ -66,13 +65,11 @@ namespace View.Control
         private void Start()
         {
             _moveDisplayStart = _moveDisplay.localPosition;
-            _scrollHelperStart = _scrollHelper.localPosition;
             _buttonSelectStart = _buttonSelect.transform.localPosition;
             _mainViewStart = _scrollView.transform.localPosition;
             _settingsStart = _settings.transform.localPosition;
             
             _moveDisplay.Translate(_moveDisplayEnd);
-            _scrollHelper.Translate(_scrollHelperEnd);
             _buttonSelect.transform.Translate(_buttonSelectEnd);
             
             Show();
@@ -81,10 +78,6 @@ namespace View.Control
         public void Show()
         {
             LeanTween.moveLocal(_moveDisplay.gameObject, _moveDisplayStart, TransitionTime)
-                .setDelay(TransitionDelay)
-                .setEase(LeanTweenType.easeOutSine);
-            
-            LeanTween.moveLocal(_scrollHelper.gameObject, _scrollHelperStart + _scrollHelperEnd, TransitionTime)
                 .setDelay(TransitionDelay)
                 .setEase(LeanTweenType.easeOutSine);
             
@@ -98,10 +91,6 @@ namespace View.Control
         public void Hide()
         {
             LeanTween.moveLocal(_moveDisplay.gameObject, _moveDisplayStart + _moveDisplayEnd, TransitionTime)
-                .setDelay(TransitionDelay)
-                .setEase(LeanTweenType.easeOutSine);
-            
-            LeanTween.moveLocal(_scrollHelper.gameObject, _scrollHelperStart, TransitionTime)
                 .setDelay(TransitionDelay)
                 .setEase(LeanTweenType.easeOutSine);
             

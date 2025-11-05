@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,6 +16,7 @@ namespace View.Game
     /// </summary>
     public class BoardAction : MonoBehaviour
     {
+        public int timeToPlay;
         public float LevelDelay => GameDef.Get.LevelDelay;
 
         private PuzzleView _puzzleView;
@@ -32,6 +34,11 @@ namespace View.Game
         private const int MaxMovesInQueue = 2;
         
         public event Action<int> PuzzleWin;
+        
+        public event Action PuzzleLose;
+        
+        private WaitForSeconds _waitForSeconds = new WaitForSeconds(1f);
+        
 
         private void Awake()
         {
@@ -46,7 +53,43 @@ namespace View.Game
         public void Init()
         {
             _numActions = 0;
+            StartCoroutine(CoCountDown());
         } 
+        
+        IEnumerator CoCountDown()
+        {
+            while (timeToPlay > 0)
+            {
+                yield return _waitForSeconds;
+                timeToPlay--;
+            }
+
+            PuzzleLose?.Invoke();
+        }
+        
+        public void AddTime(int time)
+        {
+            var gold = ResourceType.Gold.Manager();
+            if (!gold.IsInFreeMode && gold.GetAmount() < 10)
+            {
+                UIToastManager.Instance.Show("Not enough gold");
+            }
+            else
+            {
+                if (!gold.IsInFreeMode)
+                {
+                    gold.Subtract(10);
+                }
+
+                timeToPlay += time;
+
+            }
+        }
+
+        public int getTimeToPlay()
+        {
+            return timeToPlay;
+        }
 
         /// <summary>
         /// Handle a move action on a node in the given direction. Syncronized to prevent multiple moves being played 
@@ -169,6 +212,7 @@ namespace View.Game
                 }
 
                 _puzzleState.DestroyBoard();
+                StopAllCoroutines();
                 PuzzleWin?.Invoke(_puzzleState.CurrentLevel);
             } else if (_moveQueue.Count > 0) {
                 var move = _moveQueue.Dequeue();

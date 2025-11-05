@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Core.Game;
 using PuzzleGames;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.UI;
@@ -13,6 +15,9 @@ namespace View.Control
     public class ScrollView : MonoBehaviour
     {
        public GameObject PuzzleGamePrefab;
+       public GameObject winPanel;
+       public GameObject losePanel;
+       public TextMeshProUGUI timeToPlay;
 
        private bool _scrollEnabled;
 
@@ -28,6 +33,7 @@ namespace View.Control
        private NavigationScript _navigation;
        private MoveDisplay _moveDisplay;
        private GameAudio _gameAudio;
+       private BoardAction _boardAction;
 
        private void Awake()
        {
@@ -61,7 +67,7 @@ namespace View.Control
 
        private void Start()
        {
-          _selectedLevel = Levels.CurrentLevelNum;
+          _selectedLevel = Levels.CurrentLevelNum + 1;
           
           GenerateLevelsList();
 
@@ -75,7 +81,9 @@ namespace View.Control
           
           puzzleState.BoardEnabled = true;
           puzzleScale.PuzzleInit += OnPuzzleInit;
+          _boardAction = _levels[_selectedLevel].GetComponent<BoardAction>();
           _levels[_selectedLevel].GetComponent<BoardAction>().PuzzleWin += OnPuzzleWin;
+          _levels[_selectedLevel].GetComponent<BoardAction>().PuzzleLose += OnPuzzleLose;
           puzzleState.LevelStateChanged += OnLevelStateChanged;
           
           var bounds = _levelBounds[_selectedLevel];
@@ -86,8 +94,15 @@ namespace View.Control
           puzzleState.Init(_selectedLevel);
        }
 
+       IEnumerator CoGoHome()
+       {
+          yield return new WaitForSeconds(2f);
+          EnableScroll();
+       }
+
        private void FixedUpdate()
        {
+          timeToPlay.text = _boardAction.getTimeToPlay().ToString();
        }
 
        private void Update()
@@ -194,12 +209,14 @@ namespace View.Control
        {
           var puzzleState = _levels[_selectedLevel].GetComponent<PuzzleState>();
           
+          // --- Dọn dẹp ---
           puzzleState.BoardEnabled = false;
           _levels[_selectedLevel].GetComponent<GameBoardAudio>().enabled = true;
           _levels[_selectedLevel].GetComponent<PuzzleScale>().PuzzleInit -= OnPuzzleInit;
           _levels[_selectedLevel].GetComponent<BoardAction>().PuzzleWin -= OnPuzzleWin;
           puzzleState.LevelStateChanged -= OnLevelStateChanged;
           
+          // --- Analytics ---
           Analytics.CustomEvent("nodulus.level.complete", new Dictionary<string, object> {
              { "level.name", puzzleState.Metadata.Name },
              { "level.moves", puzzleState.NumMoves },
@@ -207,44 +224,49 @@ namespace View.Control
              { "level.timeElapsed", puzzleState.TimeElapsed },
              { "level.winCount", puzzleState.Metadata.WinCount }
           });
-          
-          var newSelectedLevel = level >= _levels.Length - 1 ? _levels.Length - 1 : level + 1;
-          
-          if (newSelectedLevel == _selectedLevel) {
-             return;
-          }
-          
-          var prevOffset = _levelBounds[level].Item2; 
-          const float margin = 1.5f; 
-          
-          GenerateLevel(newSelectedLevel, margin, ref prevOffset);
-          
-          _selectedLevel = newSelectedLevel;
 
-          
-          puzzleState = _levels[_selectedLevel].GetComponent<PuzzleState>();
-          
-          _levels[_selectedLevel].GetComponent<PuzzleState>().BoardEnabled = false;
-          _levels[_selectedLevel].GetComponent<PuzzleScale>().PuzzleInit += OnPuzzleInit;
-          _levels[_selectedLevel].GetComponent<BoardAction>().PuzzleWin += OnPuzzleWin;
-          _levels[_selectedLevel].GetComponent<PuzzleState>().LevelStateChanged += OnLevelStateChanged;
-          
-          var bounds = _levelBounds[_selectedLevel];
-          var mid = (bounds.Item1 + bounds.Item2) / 2f;
-          
-          const float time = 0.5f;
-          const float moveDelay = 1f;
-          LeanTween.moveLocal(gameObject, Vector3.up * mid, time)
-             .setEase(LeanTweenType.easeInOutSine)
-             .setDelay(moveDelay);
-          
-          const float initDelay = 0.5f;
-          LeanTween.delayedCall(initDelay, () => {
-             puzzleState.GetComponent<PuzzleState>().BoardEnabled = true;
-             puzzleState.Init(_selectedLevel);
-             
-             _levels[_selectedLevel].GetComponent<PuzzleView>().ResumeView();
+          // 2. Mở Bảng Hoàn thành (Completed Panel)
+          // TODO: điều chỉnh độ trễ nếu cần
+          const float openPanelDelay = 1.0f; // Đợi 1 giây trước khi hiển thị
+          LeanTween.delayedCall(openPanelDelay, () => {
+             if (winPanel != null)
+             {
+                winPanel.SetActive(true);
+             }
+             else
+             {
+                Debug.LogWarning("completedPanel chưa được gán trong Inspector!");
+             }
           });
+
+          StartCoroutine(CoGoHome());
+
+          // --- LOGIC TẢI CẤP ĐỘ TIẾP THEO ĐÃ BỊ XÓA ---
+       }
+
+       private void OnPuzzleLose()
+       {
+          var heart = ResourceType.Heart.Manager();
+          heart.Subtract(1);
+          const float openPanelDelay = 1.0f; // Đợi 1 giây trước khi hiển thị
+          LeanTween.delayedCall(openPanelDelay, () => {
+             if (winPanel != null)
+             {
+                losePanel.SetActive(true);
+             }
+             else
+             {
+                Debug.LogWarning("completedPanel chưa được gán trong Inspector!");
+             }
+          });
+          
+          StartCoroutine(CoGoHome());
+
+       }
+
+       public void AddTime()
+       {
+          _boardAction.AddTime(5);
        }
 
        private void OnPan(TKPanRecognizer recognizer)

@@ -85,6 +85,7 @@ namespace View.Items
         RestartLevel,
         Settings,
         MusicToggle,
-        SfxToggle
+        SfxToggle,
+        PlusTime
     }
 }

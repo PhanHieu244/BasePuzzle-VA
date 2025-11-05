@@ -1,5 +1,6 @@
 ﻿using System;
 using BasePuzzle.PuzzlePackages.Core;
+using Core.Game;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,21 +30,10 @@ namespace PuzzleGames
 
         private void UpdateUI()
         {
-            var level     = LevelDataController.instance.Level;
-            var levelJson = LoadLevelManager.instance.ReadLevelData(level);
-           // var levelData = JsonConvert.DeserializeObject<TxtLevelData>(levelJson);
-
-            /*if(levelData==null)
-                return;  */
+            var level = Levels.CurrentLevelNum + 1;
             
             _imgBtnPlay.sprite   =GetBackgroundSprite(LevelDifficulty.Easy);
             _txtPlay.fontMaterial=GetFontColor(LevelDifficulty.Easy);
-
-            /*if (levelData == null)
-            {
-                _levelScroller.UpdateUI(level, LevelDifficulty.Easy);
-                return;
-            }*/
 
             _levelScroller.UpdateUI(level, LevelDifficulty.Easy);
         }
@@ -89,7 +79,8 @@ namespace PuzzleGames
                 WindowManager.Instance.OpenWindow<RefillPanel>(onLoaded: p => { p.SetInHome(true); });
                 return;
             }
-            var level = LevelDataController.instance.Level;
+
+            var level = Levels.CurrentLevelNum + 1;
             AudioController.PlaySound(SoundKind.UIClickButton);
             LevelLoader.LoadLevel(level);
         }

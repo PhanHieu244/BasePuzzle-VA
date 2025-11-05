@@ -38,18 +38,10 @@ namespace PuzzleGames
         private void Awake()
         {
             _waitForSeconds = new WaitForSeconds(_timeToAutoScroll);
-            /*foreach (var fx in _fxDiff)
-            {
-                fx.SetActive(false);
-            }*/
         }
 
         public void UpdateUI(int currentLevel, LevelDifficulty difficulty)
         {
-            /*var localizedLevel = LocalizationHelper.GetTranslation(LocalizationTerm.LEVEL_NUMBER)
-                .Replace1(currentLevel.ToString());
-
-            _btnPlayTxt.text = localizedLevel + $"\n{GetLocalizedDifficulty(difficulty)}";*/
 
             switch (difficulty)
             {
@@ -77,9 +69,6 @@ namespace PuzzleGames
             for (int i = 0; i < _levelItems.Length; i++)
             {
                 var level = currentLevel + i;
-
-                var levelJson = LoadLevelManager.instance.ReadLevelData(level);
-               // var levelData = JsonConvert.DeserializeObject<TxtLevelData>(levelJson);
 
                 var diff = LevelDifficulty.Easy;
 
