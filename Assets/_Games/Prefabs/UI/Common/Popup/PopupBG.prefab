@@ -313,7 +313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4051339431609706503, guid: 67a9a2efbc97dec48bbe5ab311ce40f1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c89f19038a96b4eda80a6e84788adae1, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -344,6 +344,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8010136193059444420}
     m_Modifications:
+    - target: {fileID: 164913193215223218, guid: fa00f608a1c34254b853d3384133e510, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1867045669104418127, guid: fa00f608a1c34254b853d3384133e510, type: 3}
       propertyPath: m_sharedMaterial
       value: 

@@ -109,7 +109,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4552163048014860512}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7279030719365742461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4deb1bc8a1ce194d91969d09e02afab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ebc23be16097f4d6c8e32eb24cda9c0d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -503,8 +503,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1030, y: 860}
+  m_AnchoredPosition: {x: 0, y: 195.07}
+  m_SizeDelta: {x: 1030, y: 469.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8063579720884417120
 MonoBehaviour:
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5835aab1379d635459ea2a94697669a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e355b43919184de48ef6d1a0d57099f, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -861,6 +861,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7056197807050554181}
     m_Modifications:
+    - target: {fileID: 265372264399805687, guid: 9916851ddac15cb428441ec20b0bd154, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b326ab7a3233649ea973d7d7cce12e41, type: 3}
     - target: {fileID: 4525764690052314766, guid: 9916851ddac15cb428441ec20b0bd154, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 27
@@ -869,6 +873,14 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: c32472104301dc349a9e8b8e1c8a3b98, type: 2}
+    - target: {fileID: 6570773584401842600, guid: 9916851ddac15cb428441ec20b0bd154, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570773584401842600, guid: 9916851ddac15cb428441ec20b0bd154, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 83
+      objectReference: {fileID: 0}
     - target: {fileID: 7438725855296439023, guid: 9916851ddac15cb428441ec20b0bd154, type: 3}
       propertyPath: m_Name
       value: BtnSound
@@ -1191,6 +1203,14 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: c32472104301dc349a9e8b8e1c8a3b98, type: 2}
+    - target: {fileID: 1273959135336062772, guid: 23b8a979a9e367d49bfbeae62bae12ec, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 81
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273959135336062772, guid: 23b8a979a9e367d49bfbeae62bae12ec, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 3289238612770446451, guid: 23b8a979a9e367d49bfbeae62bae12ec, type: 3}
       propertyPath: m_Name
       value: BtnMusic
@@ -1275,6 +1295,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5273955392665256555, guid: 23b8a979a9e367d49bfbeae62bae12ec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b70fe7e65532a4ec6bed46d5627ac772, type: 3}
     - target: {fileID: 8381392241306494994, guid: 23b8a979a9e367d49bfbeae62bae12ec, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 27
@@ -1301,6 +1325,14 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: c32472104301dc349a9e8b8e1c8a3b98, type: 2}
+    - target: {fileID: 1273959135336062772, guid: 9e596d33115372743afca6251c4404c8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 89
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273959135336062772, guid: 9e596d33115372743afca6251c4404c8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 88
+      objectReference: {fileID: 0}
     - target: {fileID: 3289238612770446451, guid: 9e596d33115372743afca6251c4404c8, type: 3}
       propertyPath: m_Name
       value: BtnVibrate
@@ -1385,6 +1417,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5273955392665256555, guid: 9e596d33115372743afca6251c4404c8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e0077ae6e9bda40a080f32b753e6080b, type: 3}
     - target: {fileID: 8381392241306494994, guid: 9e596d33115372743afca6251c4404c8, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 27

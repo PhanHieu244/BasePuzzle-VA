@@ -52,19 +52,6 @@ MonoBehaviour:
     Resources:
     - type: 1
       value: 1000
-    - type: 4
-      value: 5
-    - type: 5
-      value: 5
-    - type: 3
-      value: 5
-    InfiResources: []
-  - ID: 11
-    Prefab: {fileID: 4521086255938998407, guid: 8496da9dfb8b99a48830966283149d57, type: 3}
-    bundleName: No ads
-    Price: 7.99
-    RemoveAds: 1
-    Resources: []
     InfiResources: []
   - ID: 7
     Prefab: {fileID: 1756297975912427929, guid: d8c453f7dd4874648b88549de61cff72, type: 3}
@@ -85,12 +72,6 @@ MonoBehaviour:
     Resources:
     - type: 1
       value: 5000
-    - type: 4
-      value: 5
-    - type: 5
-      value: 5
-    - type: 3
-      value: 5
     InfiResources:
     - type: 0
       value: 180
@@ -102,12 +83,6 @@ MonoBehaviour:
     Resources:
     - type: 1
       value: 8000
-    - type: 4
-      value: 10
-    - type: 5
-      value: 10
-    - type: 3
-      value: 10
     InfiResources:
     - type: 0
       value: 360
