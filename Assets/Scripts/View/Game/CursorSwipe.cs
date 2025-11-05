@@ -52,11 +52,26 @@ namespace View.Game
 							.setDelay(Delay)
 							.setEase(LeanTweenType.easeInOutSine)
 							.setLoopPingPong(1)
-							.setOnUpdate(a => _spriteRenderer.color = Colorizer.Alpha(_spriteRenderer.color, a))
+							.setOnUpdate(a => {
+								// Nên kiểm tra null ở đây nếu component có thể bị hủy riêng
+								if (_spriteRenderer != null) 
+									_spriteRenderer.color = Colorizer.Alpha(_spriteRenderer.color, a);
+							})
 							.id;
 					})
 					.id;	
 			});
+		}
+		
+		private void OnDestroy()
+		{
+			// Hủy tất cả các tween được tạo từ chính GameObject này
+			LeanTween.cancel(gameObject); 
+    
+			// Đảm bảo không gọi TouchKit vì script này không liên quan đến TouchKit
+			// Nếu bạn muốn hủy riêng theo ID cũng được, nhưng hủy theo GameObject là an toàn nhất.
+			// LeanTween.cancel(_moveTween); 
+			// LeanTween.cancel(_colorTween);
 		}
 
 		public void Hide(Action onComplete = null)
