@@ -17,6 +17,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Games/Scenes/GamePlay.unity
     guid: aae557b57e5133844a62bc7a3577caf2
+  - enabled: 1
+    path: Assets/Candypuzzleblock/Scenes/Main Menu.unity
+    guid: febb9f0e9cd347a40a7856f7908731b5
+  - enabled: 1
+    path: Assets/Candypuzzleblock/Scenes/MainScene.unity
+    guid: f8690d4b175b40849bd42f542f0ebecd
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: e1718942d2a609a44a2a70e238443fdb, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
