@@ -8,6 +8,7 @@ using System.Xml.Linq;
 
 
 using DG.Tweening;
+using PuzzleGames;
 
 
 // This script has main logic to run entire gameplay.
@@ -672,7 +673,14 @@ public class PGamePlay : PSingleton<PGamePlay>,IPointerDownHandler,IPointerUpHan
         //FireBaseManager.instance.LogScreen("High Score : " + FindObjectOfType<ScoreManager>().GetScore().ToString() 
         //               + "  " + GameController.gameMode.ToString());
       //  StartCoroutine(ShowAds());
-	} 
+      StartCoroutine(CoGoHome());
+	}
+
+	IEnumerator CoGoHome()
+	{
+		yield return new WaitForSeconds (2F);
+		LoadSceneManager.Instance.LoadScene("Home");
+	}
     IEnumerator ShowAds()
     {
         yield return new WaitForSeconds(0.5f);

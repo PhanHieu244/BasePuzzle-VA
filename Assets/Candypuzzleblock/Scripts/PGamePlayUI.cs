@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using PuzzleGames;
 using UnityEngine.UI;
 
 public class PGamePlayUI : PSingleton<PGamePlayUI> 
@@ -20,7 +21,7 @@ public class PGamePlayUI : PSingleton<PGamePlayUI>
 	public void OnPauseButtonPressed(){
 		if (PInputManager.Instance.CanInput ()) {
 			PAudioManager.Instance.PlayButtonClickSound ();
-			PStackManager.Instance.SpawnUIScreen ("Paused");
+			LoadSceneManager.Instance.LoadScene("Home");
 		}
 	}
 
