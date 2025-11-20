@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Cecil;
 using UnityEngine;
 
 public class PurchasingManager : MonoBehaviour
@@ -8,49 +9,28 @@ public class PurchasingManager : MonoBehaviour
    {
       var resetPowerQuantity = PlayerPrefs.GetInt("ResetPower", 0);
       var clearPowerQuantity = PlayerPrefs.GetInt("ClearPower", 0);
+      var gold = ResourceType.Gold.Manager();
       switch (i)
       {
          case 1:
-            IAPManager.OnPurchaseSuccess = () =>
+            
+            if (gold.GetAmount() < 20)
             {
-               PlayerPrefs.SetInt("ResetPower", resetPowerQuantity + 5);
-            };
-            IAPManager.Instance.BuyProductID(IAPKey.PACK1);
+               UIToastManager.Instance.Show("Not enough gold");
+               return;
+            }
+            gold.Subtract(20);
+            PlayerPrefs.SetInt("ResetPower", resetPowerQuantity + 5);
+            
             break;
          case 2:
-            IAPManager.OnPurchaseSuccess = () =>
+            if (gold.GetAmount() < 40)
             {
-               PlayerPrefs.SetInt("ResetPower", resetPowerQuantity + 10);
-            };
-            IAPManager.Instance.BuyProductID(IAPKey.PACK2);
-            break;
-         case 3:
-            IAPManager.OnPurchaseSuccess = () =>
-            {
-               PlayerPrefs.SetInt("ResetPower", resetPowerQuantity + 20);
-            };
-            IAPManager.Instance.BuyProductID(IAPKey.PACK3);
-            break;
-         case 4:
-            IAPManager.OnPurchaseSuccess = () =>
-            {
-               PlayerPrefs.SetInt("ClearPower", clearPowerQuantity + 5);
-            };
-            IAPManager.Instance.BuyProductID(IAPKey.PACK4);
-            break;
-         case 5:
-            IAPManager.OnPurchaseSuccess = () =>
-            {
-               PlayerPrefs.SetInt("ClearPower", clearPowerQuantity + 20);
-            };
-            IAPManager.Instance.BuyProductID(IAPKey.PACK5);
-            break;
-         case 6:
-            IAPManager.OnPurchaseSuccess = () =>
-            {
-               PlayerPrefs.SetInt("ClearPower", clearPowerQuantity + 40);
-            };
-            IAPManager.Instance.BuyProductID(IAPKey.PACK6);
+               UIToastManager.Instance.Show("Not enough gold");
+               return;
+            }
+            gold.Subtract(40);
+            PlayerPrefs.SetInt("ClearPower", resetPowerQuantity + 5);
             break;
       }
       

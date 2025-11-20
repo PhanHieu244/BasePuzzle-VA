@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using TMPro;
 using UnityEngine.UI;
 
 public class PGameOver : MonoBehaviour {
 
 	[SerializeField] Text txtScore;
 	[SerializeField] private Text txtBestScore;
-	[SerializeField] private Text txtCoinReward;
+	[SerializeField] private TextMeshProUGUI txtCoinReward;
 
 	public void SetLevelScore(int score, int coinReward)
 	{

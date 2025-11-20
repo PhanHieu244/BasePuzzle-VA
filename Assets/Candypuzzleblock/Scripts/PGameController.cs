@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using PuzzleGames;
 using TMPro;
 
 public class PGameController : PSingleton<PGameController> 
@@ -83,7 +84,48 @@ public class PGameController : PSingleton<PGameController>
 	// Use this for initialization
 	void Start () 
 	{
+		
 		UpdateResetPowerQuantityText();
 		UpdateClearPowerQuantityText();
+
+		StartCoroutine(CoCountdown());
+	}
+	
+	
+	public TextMeshProUGUI countdownText;
+	public int countdown;
+	IEnumerator CoCountdown()
+	{
+		while (countdown > 0)
+		{
+			countdownText.text = countdown.ToString();
+			yield return new WaitForSeconds(1f);
+			countdown--;
+		}
+            
+		StartCoroutine(EndGame());
+	}
+
+	IEnumerator  EndGame()
+	{
+		GameObject gameOverScreen = PStackManager.Instance.SpawnUIScreen ("GameOver");
+		
+		gameOverScreen.GetComponent<PGameOver> ().SetLevelScore (FindObjectOfType<PScoreManager>().GetScore(), 0);
+		var heart = ResourceType.Heart.Manager();
+		heart.Subtract(1);
+		yield return new WaitForSeconds(2f);
+		LoadSceneManager.Instance.LoadScene("Home");
+	}
+
+	public IEnumerator WinGame()
+	{
+		GameObject gameOverScreen = PStackManager.Instance.SpawnUIScreen ("GameWin");
+		
+		gameOverScreen.GetComponent<PGameOver> ().SetLevelScore (FindObjectOfType<PScoreManager>().GetScore(), 10);
+		var gold = ResourceType.Gold.Manager();
+		gold.Add(10);
+		yield return new WaitForSeconds(2f);
+		LevelDataController.instance.CompleteLevel();
+		LoadSceneManager.Instance.LoadScene("Home");
 	}
 }

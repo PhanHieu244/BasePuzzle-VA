@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +11,12 @@ public class PScoreManager : PSingleton<PScoreManager>
 	[SerializeField] private GameObject scoreAnimator;
 	[SerializeField] private Text txtAnimatedText;
 	private int Score = 0;
+	
+	private int targetScore = 0;
 
 	void Start()
 	{
+		targetScore = LevelDataController.instance.Level * 2000;
 		txtScore.text = Score.ToString ();	
         highScore.text = PlayerPrefs.GetInt("BestScore_" + PGameController.gameMode.ToString()).ToString ();  
 	}
@@ -29,6 +34,11 @@ public class PScoreManager : PSingleton<PScoreManager>
 			scoreAnimator.transform.position = mousePos;
 			txtAnimatedText.text = "+" + scoreToAdd.ToString ();
 			scoreAnimator.SetActive (true);
+		}
+
+		if (Score >= targetScore)
+		{
+			StartCoroutine(PGameController.Instance.WinGame());
 		}
 	}
 
