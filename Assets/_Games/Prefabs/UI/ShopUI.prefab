@@ -295,8 +295,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 93c89b9e0d6d54b49812ccf174d2f750, type: 3}
-  m_Type: 2
+  m_Sprite: {fileID: 21300000, guid: 57a9869b8405c4762b6e34cd60f6ce40, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4deb1bc8a1ce194d91969d09e02afab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bfc19d5e83e184b65aaa4e640a841856, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1252,7 +1252,7 @@ PrefabInstance:
     - target: {fileID: 7151201755047410433, guid: eb64e4c9c53008747be1b43c77ee0502, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 06aced92b403844478010463a5245159, type: 3}
+      objectReference: {fileID: 21300000, guid: 9595fd29fb5024f7e83fe867f6b301a4, type: 3}
     - target: {fileID: 8157655752448836935, guid: eb64e4c9c53008747be1b43c77ee0502, type: 3}
       propertyPath: m_Name
       value: BtnMoreOffer
@@ -1336,6 +1336,10 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4027420992034871120, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 25973d1effbb94c8f986059a2d25f6ca, type: 3}
     - target: {fileID: 4761280301458262457, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -1438,19 +1442,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6674034829295405165, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.8851
       objectReference: {fileID: 0}
     - target: {fileID: 6674034829295405165, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.8851
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674034829295405165, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8851
       objectReference: {fileID: 0}
     - target: {fileID: 6674034829295405165, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 15
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 6674034829295405165, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6924987525828124862, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_SortingLayer
