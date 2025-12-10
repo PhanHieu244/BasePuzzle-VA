@@ -91,7 +91,20 @@ namespace PuzzleGames
             }
             var level = LevelDataController.instance.Level;
             AudioController.PlaySound(SoundKind.UIClickButton);
-            LevelLoader.LoadLevel(level);
+
+            var heart = ResourceType.Heart.Manager();
+            if (heart.GetAmount() > 0 || heart.IsInFreeMode)
+            {
+                if (!heart.IsInFreeMode)
+                {
+                    heart.Subtract(1);
+                }
+                LevelLoader.LoadLevel(level);
+            }
+            else
+            {
+                UIToastManager.Instance.Show("Not enough hearts");
+            }
         }
     }
 }
