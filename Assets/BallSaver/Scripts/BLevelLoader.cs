@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PuzzleGames;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -12,9 +13,10 @@ public class BLevelLoader : MonoBehaviour
     [SerializeField]
     public TextMeshProUGUI LevelText;
     // Start is called before the first frame update
-    void Start()
+    IEnumerator Start()
     {
-        CurrentLevel = PlayerPrefs.GetInt("Level", 1);
+        yield return new WaitForEndOfFrame();
+        CurrentLevel = LevelDataController.instance.Level;
         LevelText.text = "Level " + CurrentLevel;
       //  NextLevel.text = "" + (CurrentLevel + 1);
         Instantiate(Levels[CurrentLevel]);

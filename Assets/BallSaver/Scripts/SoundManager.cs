@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace DxCoder
 
 {
     [RequireComponent(typeof(AudioSource))]
+    [DefaultExecutionOrder(-1)]
     public class SoundManager : MonoBehaviour
     {
         public static SoundManager Instance { get; private set; }

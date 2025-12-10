@@ -59,10 +59,17 @@ public class BGameManager : MonoBehaviour
 
     public void GotoMenu() {
         SoundManager.Instance.PlaySound(SoundManager.Instance.button);
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Home");
 
     }
-    public void NextLevel() {
+    public void NextLevel()
+    {
+        var gold = ResourceType.Gold.Manager();
+        if (gold.GetAmount() < 10)
+        {
+            UIToastManager.Instance.Show("Not enough gold");
+        }
+        gold.Subtract(10);
         SoundManager.Instance.PlaySound(SoundManager.Instance.button);
 
         SceneManager.LoadScene("Game");
