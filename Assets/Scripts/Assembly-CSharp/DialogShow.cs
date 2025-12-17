@@ -1,0 +1,8 @@
+public enum DialogShow
+{
+	DONT_SHOW_IF_OTHERS_SHOWING = 0,
+	REPLACE_CURRENT = 1,
+	STACK = 2,
+	SHOW_PREVIOUS = 3,
+	OVER_CURRENT = 4
+}
