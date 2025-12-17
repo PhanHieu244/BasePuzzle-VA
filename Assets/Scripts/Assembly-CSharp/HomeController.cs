@@ -4,16 +4,6 @@ public class HomeController : BaseController
 
 	public void OnClick(int index)
 	{
-		if (index == 0)
-		{
-			CUtils.LikeFacebookPage(ConfigController.Config.facebookPageID);
-		}
 		CSound.instance.PlayButton();
-	}
-
-	protected override void Start()
-	{
-		base.Start();
-		AdNetworksManager.instance.ShowBanner();
 	}
 }

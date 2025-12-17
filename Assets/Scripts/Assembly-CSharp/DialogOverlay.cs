@@ -12,14 +12,6 @@ public class DialogOverlay : MonoBehaviour
 		overlay = GetComponent<Image>();
 	}
 
-	private void Start()
-	{
-		DialogController instance = DialogController.instance;
-		instance.onDialogsOpened = (Action)Delegate.Combine(instance.onDialogsOpened, new Action(OnDialogOpened));
-		DialogController instance2 = DialogController.instance;
-		instance2.onDialogsClosed = (Action)Delegate.Combine(instance2.onDialogsClosed, new Action(OnDialogClosed));
-	}
-
 	private void OnEnable()
 	{
 		SceneManager.sceneLoaded += OnLevelFinishedLoading;
@@ -32,7 +24,7 @@ public class DialogOverlay : MonoBehaviour
 
 	private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
 	{
-		overlay.enabled = false;
+		
 	}
 
 	private void OnDialogOpened()

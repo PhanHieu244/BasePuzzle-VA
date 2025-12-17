@@ -1,3 +1,5 @@
+using PuzzleGames;
+
 public class CompleteDialog : Dialog
 {
 	public void OnReplayClick()
@@ -20,9 +22,9 @@ public class CompleteDialog : Dialog
 		CUtils.LoadScene(3, true);
 	}
 
-	public override void Close()
+	public void OnBackClick()
 	{
-		CUtils.ShowInterstitialAd();
-		base.Close();
+		LevelDataController.instance.CompleteLevel();
+		LoadSceneManager.Instance.LoadScene("Home");
 	}
 }

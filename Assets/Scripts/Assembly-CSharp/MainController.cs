@@ -46,10 +46,9 @@ public class MainController : BaseController
 		}
 		tileRegion.Load(gameLevel);
 		GameState.canPlay = true;
-		levelText.text = "Level " + level;
+		levelText.text = "Level " + (level - 1);
 		ProcessLevelGift();
 		Utils.IncreaseNumMoves(world, level);
-		CUtils.ShowBannerAd();
 	}
 
 	public void Replay()
@@ -59,7 +58,6 @@ public class MainController : BaseController
 		{
 			piece.MoveToBottom();
 		}
-		CUtils.ShowInterstitialAd();
 		CSound.instance.Play(CSound.Others.Replay);
 	}
 
@@ -106,25 +104,12 @@ public class MainController : BaseController
 		if (level == unlockLevel)
 		{
 			LevelController.SetUnlockLevel(world, unlockLevel + 1);
-			StartCoroutine(ReportCompletition());
 		}
 		Timer.Schedule(this, (float)numTile * 0.03f + 0.7f, delegate
 		{
 			DialogController.instance.ShowDialog(DialogType.Complete);
 		});
 		CSound.instance.Play(CSound.Others.Complete);
-	}
-
-	private IEnumerator ReportCompletition()
-	{
-		int levelsCount2 = 0;
-		for (int i = 1; i <= 4; i++)
-		{
-			levelsCount2 += LevelController.GetUnlockLevel(i);
-		}
-		levelsCount2 -= 4;
-		string url = "https://1-dot-luee-wally-v2-cpc.appspot.com/game_progress?game_id=" + Application.identifier + "&gaid=" + AdNetworksManager.instance.advertisingId + "&score=" + levelsCount2 + "&is_new_record=true";
-		yield return new WWW(url);
 	}
 
 	private void SavePrefs()

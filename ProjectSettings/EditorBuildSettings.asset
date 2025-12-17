@@ -18,6 +18,18 @@ EditorBuildSettings:
     path: Assets/_Games/Scenes/GamePlay.unity
     guid: aae557b57e5133844a62bc7a3577caf2
   - enabled: 0
+    path: Assets/Hexa_Puzzle/_Scenes/Home.unity
+    guid: 1c8ae4b49cd595148a3fa72b02eb1aeb
+  - enabled: 1
+    path: Assets/Hexa_Puzzle/_Scenes/Main.unity
+    guid: 60ec7ca46cd7aea4fbd24bc5b555ead3
+  - enabled: 0
+    path: Assets/Hexa_Puzzle/_Scenes/SelectLevel.unity
+    guid: de4d1983982071b47918d4383f517366
+  - enabled: 0
+    path: Assets/Hexa_Puzzle/_Scenes/SelectWorld.unity
+    guid: dccef948495d6774f9607d502159b4b1
+  - enabled: 0
     path: Assets/BallSaver/Scene/Game.unity
     guid: c850ee8c3b14cc8459e7e186857cf567
   m_configObjects:

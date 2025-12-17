@@ -36,6 +36,7 @@ public class Dialog : MonoBehaviour
 	protected virtual void Start()
 	{
 		onDialogCompleteClosed = (Action)Delegate.Combine(onDialogCompleteClosed, new Action(OnDialogCompleteClosed));
+		GetComponent<Canvas>().sortingLayerID = 0;
 	}
 
 	private void Update()

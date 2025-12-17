@@ -60,9 +60,6 @@ public class ScreenFader : MonoBehaviour
 
 	private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
 	{
-		if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("ScreenFader_Out"))
-		{
-			FadeIn(null);
-		}
+		
 	}
 }
