@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-#if EXIST_FB
-using Facebook.Unity;
-#endif
 using UnityEngine;
 #if UNITY_IOS
 using Unity.Advertisement.IosSupport;
@@ -36,35 +33,13 @@ public class FacebookController : PersistentSingleton<FacebookController>, IBind
     // Start is called before the first frame update
     void Start()
     {
-        if (!FB.IsInitialized)
-        {
-            LogUtils.LogError("InitFB");
-            // Initialize the Facebook SDK
-            FB.Init(FBInitCallback, FBOnHideUnity);
-        }
-        else
-        {
-            // Already initialized, signal an app activation App Event
-            FB.ActivateApp();
-            OnInitSuccess();
-        }
+      
     }
 
     private void FBInitCallback()
     {
         LogUtils.LogError("FBInitCallback");
-        if (FB.IsInitialized)
-        {
-            // Signal an app activation App Event
-            FB.ActivateApp();
-            // Continue with Facebook SDK
-            // ...      
-            OnInitSuccess();
-        }
-        else
-        {
-            LogUtils.LogError("Failed to Initialize the Facebook SDK");
-        }
+        
     }
 
     private void FBOnHideUnity(bool isGameShown)
@@ -86,108 +61,7 @@ public class FacebookController : PersistentSingleton<FacebookController>, IBind
 
     private void OnInitSuccess()
     {
-        LogUtils.LogError("OnInitSuccess + FB.IsLoggedIn : " + FB.IsLoggedIn);
-        if (FB.IsLoggedIn)
-        {
-#if UNITY_ANDROID
-            FB.API(QUERY_DB, HttpMethod.GET, result =>
-            {
-                FBUser user = Newtonsoft.Json.JsonConvert.DeserializeObject<FBUser>(result.RawResult);
-                if (user != null && !string.IsNullOrEmpty(user.picture.data.url))
-                {
-                    string s = user.picture.data.url;
-                    if (UserInfoController.instance.UserInfo.avatar_url != s)
-                    {
-                        UserInfoController.instance.SetUrl(s);
-                    }
-                }
-            });
-#elif UNITY_IOS
-            if (ATTrackingStatusBinding.GetAuthorizationTrackingStatus() == ATTrackingStatusBinding.AuthorizationTrackingStatus.AUTHORIZED)
-            {
-                FB.API(QUERY_DB, HttpMethod.GET, result =>
-                {
-                    FBUser user = Newtonsoft.Json.JsonConvert.DeserializeObject<FBUser>(result.RawResult);
-                    if (user != null && !string.IsNullOrEmpty(user.picture.data.url))
-                    {
-                        string s = user.picture.data.url;
-                        if (UserInfoController.instance.UserInfo.avatar_url != s)
-                        {
-                            UserInfoController.instance.SetUrl(s);
-                        }
-                    }
-                });
-            }else
-            {
-                var profile = FB.Mobile.CurrentProfile();
-                if (profile != null && !string.IsNullOrEmpty(profile.ImageURL))
-                {
-                    if (UserInfoController.instance.UserInfo.avatar_url != profile.ImageURL)
-                    {
-                        UserInfoController.instance.SetUrl(profile.ImageURL);
-                    }
-                }
-                else
-                {
-                    LogUtils.LogError("Facebook profile is null");
-                }
-            }
-
-#endif
-        }
-    }
-
-#endif
-
-
-    #region LogIn/LogOut
-
-    private Action<DataBinding> _onSuccess;
-    private Action _onFail;
-
-    public void SignIn(Action<string, string, string> onSuccess, Action onFail)
-    {
-    }
-
-    public void RequestSignIn(Action<DataBinding> onSuccess, Action onFail)
-    {
-#if EXIST_FB
-        _onSuccess = onSuccess;
-        _onFail = onFail;
-        var perms = new List<string>() { "gaming_profile", "user_friends" };
-#if UNITY_ANDROID
-        FB.LogInWithReadPermissions(perms, AuthCallback);
-#elif UNITY_IOS
-        var isLimited =
- ATTrackingStatusBinding.GetAuthorizationTrackingStatus() != ATTrackingStatusBinding.AuthorizationTrackingStatus.AUTHORIZED;
-        FB.Mobile.LoginWithTrackingPreference(isLimited ? LoginTracking.LIMITED : LoginTracking.ENABLED, perms, "nonce123", AuthCallback);
-#endif
-#endif
-    }
-
-    public void SignOut(Action onSuccess)
-    {
-#if EXIST_FB
-        FB.LogOut();
-#endif
-        onSuccess?.Invoke();
-    }
-
-    #endregion
-
-#if EXIST_FB
-    private void AuthCallback(ILoginResult result)
-    {
-        if (FB.IsLoggedIn)
-        {
-            UpdateUserInfo();
-        }
-        else
-        {
-            LogUtils.Log("AuthCallback: " + "login failed!");
-            LogUtils.Log(result.RawResult);
-            _onFail?.Invoke();
-        }
+        
     }
 #endif
 
@@ -291,6 +165,16 @@ public class FacebookController : PersistentSingleton<FacebookController>, IBind
 
     public void FBLogOut()
     {
+    }
+
+    public void RequestSignIn(Action<DataBinding> onSuccess, Action onFail)
+    {
+       
+    }
+
+    public void SignOut(Action onSuccess)
+    {
+       
     }
 }
 
