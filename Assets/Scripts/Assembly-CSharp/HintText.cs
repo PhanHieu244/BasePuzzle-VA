@@ -6,6 +6,7 @@ public class HintText : MonoBehaviour
 {
 	private void Start()
 	{
+		GameState.hint.SetValue(ResourceType.Powerup_Helidrop.Manager().GetAmount());
 		StoredValue<int> hint = GameState.hint;
 		hint.onValueChanged = (Action)Delegate.Combine(hint.onValueChanged, new Action(OnValueChanged));
 		OnValueChanged();

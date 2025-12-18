@@ -600,7 +600,7 @@ PrefabInstance:
     - target: {fileID: 5872676549606818716, guid: d490de2daa1ea474e9bb474f41c6c091, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2703087274869402660, guid: ea3ec82d47fb4b541a939bfd92ec53eb, type: 2}
+      objectReference: {fileID: 2100000, guid: 255ccae3c21ddc547a351cc040489d81, type: 2}
     - target: {fileID: 5891736611931271236, guid: d490de2daa1ea474e9bb474f41c6c091, type: 3}
       propertyPath: m_Name
       value: ShopUI

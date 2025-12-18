@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PuzzleGames;
 using Superpow;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,6 +54,14 @@ public class MainController : BaseController
 
 	public void Replay()
 	{
+		var gold = ResourceType.Gold.Manager();
+		if (gold.GetAmount() < 10)
+		{
+			UIToastManager.Instance.Show("You do not have enough gold.");
+			return;
+		}
+		
+		gold.Subtract(10);
 		GameState.canPlay = true;
 		foreach (Piece piece in tileRegion.pieces)
 		{
@@ -63,15 +72,14 @@ public class MainController : BaseController
 
 	public void ShowHint()
 	{
-		if (GameState.hint.GetValue() <= 0)
+		var hint = ResourceType.Powerup_Helidrop.Manager();
+		if (hint.GetAmount() <= 0)
 		{
-			if (Purchaser.instance.isEnable)
-			{
-				DialogController.instance.ShowDialog(DialogType.Shop);
-			}
+			UIToastManager.Instance.Show("You do not have enough hint.");
 		}
 		else if (tileRegion.ShowHint())
 		{
+			hint.Subtract(1);
 			AddHint(-1);
 		}
 	}
@@ -116,5 +124,10 @@ public class MainController : BaseController
 	{
 		string data = JsonUtility.ToJson(levelPrefs);
 		Utils.SetLevelData(world, level, data);
+	}
+
+	public void BackToMainMenu()
+	{
+		LoadSceneManager.Instance.LoadScene("Home");
 	}
 }
