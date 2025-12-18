@@ -32,7 +32,9 @@ namespace PuzzleGames
             var levelJson = LoadLevelManager.instance.ReadLevelData(level);
             TempDataHandler.Set(TempDataKeys.CURRENT_LEVEL_JSON_DATA, levelJson);
             TempDataHandler.Set(TempDataKeys.CURRENT_LEVEL_FROM_HOME, level);
-            LoadSceneManager.Instance.LoadScene("GamePlay");
+            global::GameState.chosenLevel = (level + 1) % 60;
+            global::GameState.chosenWorld = (level / 60) + 1;
+            LoadSceneManager.Instance.LoadScene("Main");
         }
     }
 }
