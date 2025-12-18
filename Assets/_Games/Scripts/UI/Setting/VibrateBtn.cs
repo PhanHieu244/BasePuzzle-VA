@@ -1,6 +1,5 @@
 ﻿namespace PuzzleGames
 {
-    using Lofelt.NiceVibrations;
     using HapticController = HapticController;
 
     public class VibrateBtn : SettingButton
@@ -12,7 +11,7 @@
 
             if (!enableHaptic)
             {
-                HapticController.instance.Play(HapticPatterns.PresetType.Selection);
+                HapticController.instance.Play();
             }
             
             return !enableHaptic;

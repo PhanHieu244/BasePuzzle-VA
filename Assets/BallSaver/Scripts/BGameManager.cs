@@ -42,6 +42,7 @@ public class BGameManager : MonoBehaviour
             isGameEnd=true;
             int level = PlayerPrefs.GetInt("Level", 1);
             PlayerPrefs.SetInt("Level", (level + 1));
+            LevelDataController.instance.CompleteLevel();
             StartCoroutine(GameWinDelay());
         }
 

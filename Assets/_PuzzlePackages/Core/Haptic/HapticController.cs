@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Lofelt.NiceVibrations;
 using UnityEngine;
-using static Lofelt.NiceVibrations.HapticPatterns;
 
 public class HapticController : NMSingleton<HapticController>
 {
@@ -34,7 +32,6 @@ public class HapticController : NMSingleton<HapticController>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     public static void InitHapticNative()
     {
-        Lofelt.NiceVibrations.HapticController.Init();
         var h = instance;
     }
 
@@ -60,13 +57,11 @@ public class HapticController : NMSingleton<HapticController>
         return _state == 1;
     }
 
-    public void Play(PresetType presetType = PresetType.Selection)
+    public void Play()
     {
         if (_state == 0)
         {
             return;
         }
-
-        HapticPatterns.PlayPreset(presetType);
     }
 }
