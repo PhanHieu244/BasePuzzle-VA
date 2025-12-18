@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visual:
-    _icon: {fileID: 21300000, guid: bec92dad62872184289e91721dffed8e, type: 3}
+    _icon: {fileID: 21300000, guid: ab224d815a9e24881b35e460678651c5, type: 3}
     _uiPrefab: {fileID: 4827747638796032084, guid: 0f698b004d022464fae8a4a23c3d7498, type: 3}
   Detail: Picks up any 1 Stickmen and drops them into correct Hole
 --- !u!114 &7840019011008596316
@@ -1301,7 +1301,6 @@ GameObject:
   m_Component:
   - component: {fileID: 222012233704158449}
   - component: {fileID: 5900549258674161565}
-  - component: {fileID: 2148805406723392254}
   - component: {fileID: 7508093861931755485}
   m_Layer: 5
   m_Name: BG
@@ -1344,19 +1343,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5924712400233199961}
   m_CullTransparentMesh: 1
---- !u!114 &2148805406723392254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5924712400233199961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1441733fb058d14bbc36ff9bcf94c02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  designAspect: 0.5625
 --- !u!114 &7508093861931755485
 MonoBehaviour:
   m_ObjectHideFlags: 0
