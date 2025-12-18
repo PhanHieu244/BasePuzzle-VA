@@ -57,12 +57,6 @@ public class AdNetworksManager : MonoBehaviour
 
 	private string adsEnabledPlayerPrefString = "ALLINONE_ADS_ENABLED";
 
-	private MaxAdsBannerUnit _banner;
-
-	private MaxAdsInterstitialAdUnit _interstitial;
-
-	private MaxAdsRewardedAdUnit _rewardedVideo;
-
 	private AllInOneMainThreadDispatcher _mainThreadDispatcher;
 
 	private IntervalsSettings[] _intervalsRulesGlobal;
@@ -171,42 +165,6 @@ public class AdNetworksManager : MonoBehaviour
 		}
 	}
 
-	public BannerAdUnit banner
-	{
-		get
-		{
-			return _banner;
-		}
-		private set
-		{
-			_banner = (MaxAdsBannerUnit)value;
-		}
-	}
-
-	public InterstitialAdUnit interstitial
-	{
-		get
-		{
-			return _interstitial;
-		}
-		private set
-		{
-			_interstitial = (MaxAdsInterstitialAdUnit)value;
-		}
-	}
-
-	public RewardedAdUnit rewardedVideo
-	{
-		get
-		{
-			return _rewardedVideo;
-		}
-		private set
-		{
-			_rewardedVideo = (MaxAdsRewardedAdUnit)value;
-		}
-	}
-
 	public AllInOneMainThreadDispatcher mainThreadDispatcher
 	{
 		get
@@ -284,15 +242,11 @@ public class AdNetworksManager : MonoBehaviour
 		Debug.Log("#ADS: AllInOne - Initialization started with GDPRConsent = " + GDPRConsent);
 		if (settings.isUseCustomAdUnits)
 		{
-			banner = settings.banner;
-			interstitial = settings.interstitial;
-			rewardedVideo = settings.rewardedVideo;
+			
 		}
 		else
 		{
-			banner = settingsDefault.banner;
-			interstitial = settingsDefault.interstitial;
-			rewardedVideo = settingsDefault.rewardedVideo;
+			
 		}
 		ReadSettings(settings);
 		if (FirstLaunchDate == 0)
@@ -303,13 +257,9 @@ public class AdNetworksManager : MonoBehaviour
 		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 		if (!initialized)
 		{
-			Debug.Log("#ADS: MaxSdk.InitializeSdk");
-			MaxSdkAndroid.SetHasUserConsent(GDPRConsent);
-			MaxSdkAndroid.InitializeSdk();
+			
 		}
-		banner.Initialize(this, GDPRConsent);
-		interstitial.Initialize(this, GDPRConsent);
-		rewardedVideo.Initialize(this, GDPRConsent);
+		
 		onInitializationCompleted.Invoke();
 		RequestAndSetAdvertisingID();
 		GameObject gameObject = GameObject.Find("MaxSdkCallbacks");
@@ -329,7 +279,7 @@ public class AdNetworksManager : MonoBehaviour
 		}
 		else if (AdsEnabled)
 		{
-			banner.Show();
+		
 		}
 		else
 		{
@@ -353,7 +303,7 @@ public class AdNetworksManager : MonoBehaviour
 		if (initialized)
 		{
 			Debug.Log("#ADS: Hide Banner");
-			banner.Hide();
+			
 		}
 	}
 
@@ -416,20 +366,7 @@ public class AdNetworksManager : MonoBehaviour
 			{
 				LoadingScreenPopup.instance.Show();
 			}
-			Debug.Log("#ADS: Show inter " + interstitial.loadStatus);
-			if (interstitial.IsLoaded())
-			{
-				onAdClosed = (Action)Delegate.Combine(onAdClosed, (Action)delegate
-				{
-					LastInterstitialShowTime = CurrentTime();
-				});
-				interstitial.Show(onAdClosed);
-			}
-			else
-			{
-				((MaxAdsInterstitialAdUnit)interstitial).LoadInterstitial();
-				StartCoroutine(WaitInterstitialAndShow(onAdClosed, identifier));
-			}
+			
 		}
 		else
 		{
@@ -442,25 +379,12 @@ public class AdNetworksManager : MonoBehaviour
 	{
 		float timer = 0f;
 		Debug.Log("#ADS: WAIT INTERSTITIAL...");
-		while (!interstitial.IsLoaded())
-		{
-			yield return null;
-			timer += Time.deltaTime;
-		}
-		Debug.Log("#ADS: WAIT INTERSTITIAL TIME = " + timer);
-		if (timer < 3f && interstitial != null)
-		{
-			Debug.Log("#ADS: WAIT INTERSTITIAL SHOW");
-			ShowInterstitial(onAdClosed, identifier);
-		}
+		return null;
 	}
 
 	public bool IsShowingInterstitial()
 	{
-		if (initialized)
-		{
-			return interstitial.isShowing;
-		}
+		
 		return false;
 	}
 
@@ -468,14 +392,7 @@ public class AdNetworksManager : MonoBehaviour
 	{
 		if (initialized)
 		{
-			if (rewardedVideo.loadStatus == AdUnit.LoadStatus.loaded)
-			{
-				rewardedVideo.Show(onRewardVideoWatched);
-			}
-			else
-			{
-				Debug.Log("#ADS: Rewarded not ready!");
-			}
+			
 		}
 	}
 
@@ -490,19 +407,13 @@ public class AdNetworksManager : MonoBehaviour
 
 	public bool IsShowingRewardedVideo()
 	{
-		if (initialized)
-		{
-			return rewardedVideo.isShowing;
-		}
+		
 		return false;
 	}
 
 	public bool RewardedVideoLoaded()
 	{
-		if (initialized)
-		{
-			return rewardedVideo.videoLoaded;
-		}
+		
 		return true;
 	}
 
@@ -520,26 +431,7 @@ public class AdNetworksManager : MonoBehaviour
 
 	public void Reset()
 	{
-		Debug.Log("#ADS: Reset");
-		if (rewardedVideo != null)
-		{
-			Debug.Log("#ADS: Rewarded dispose");
-			rewardedVideo.Dispose();
-			rewardedVideo = null;
-		}
-		if (banner != null)
-		{
-			Debug.Log("#ADS: Banner dispose");
-			HideBanner();
-			banner.Dispose();
-			banner = null;
-		}
-		if (interstitial != null)
-		{
-			Debug.Log("#ADS: Interstitial dispose");
-			interstitial.Dispose();
-			interstitial = null;
-		}
+		
 	}
 
 	public void ActionDelayed(Action a, float delay)

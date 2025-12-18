@@ -44,8 +44,6 @@ public class LoadingScreenPopup : MonoBehaviour
 	{
 		if (!_isShowing)
 		{
-			InterstitialAdUnit interstitial = AdNetworksManager.instance.interstitial;
-			interstitial.onAdClosed = (Action)Delegate.Combine(interstitial.onAdClosed, new Action(OnAdClosed));
 			Debug.Log("### ADS POPUP - SUB");
 			StartCoroutine(Showing());
 		}
@@ -53,8 +51,6 @@ public class LoadingScreenPopup : MonoBehaviour
 
 	private void OnAdClosed()
 	{
-		InterstitialAdUnit interstitial = AdNetworksManager.instance.interstitial;
-		interstitial.onAdClosed = (Action)Delegate.Remove(interstitial.onAdClosed, new Action(OnAdClosed));
 		Debug.Log("### ADS POPUP - Closed/UNSUB");
 		_isShowing = false;
 		Debug.Log("### ADS POPUP - HIDE2");
@@ -74,8 +70,6 @@ public class LoadingScreenPopup : MonoBehaviour
 		_isShowing = false;
 		if (timer >= _timeToShow)
 		{
-			InterstitialAdUnit interstitial = AdNetworksManager.instance.interstitial;
-			interstitial.onAdClosed = (Action)Delegate.Remove(interstitial.onAdClosed, new Action(OnAdClosed));
 			Debug.Log("### ADS POPUP - UNSUB");
 		}
 		Debug.Log("### ADS POPUP - HIDE1");

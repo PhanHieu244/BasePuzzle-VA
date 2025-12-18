@@ -84,11 +84,7 @@ public class RewardedVideoGroup : MonoBehaviour
 
 	private bool IsAdAvailable()
 	{
-		if (AdNetworksManager.instance.rewardedVideo == null)
-		{
-			return false;
-		}
-		return AdNetworksManager.instance.rewardedVideo.loadStatus == AdUnit.LoadStatus.loaded;
+		return false;
 	}
 
 	private void OnApplicationPause(bool pause)
