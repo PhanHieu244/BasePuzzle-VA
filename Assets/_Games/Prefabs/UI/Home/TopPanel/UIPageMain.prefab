@@ -216,6 +216,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurrenyHealth
       objectReference: {fileID: 0}
+    - target: {fileID: 1494535194278417572, guid: 420511ceb2870444483a2ed7d9105923, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 16ae8c133c9ef41edbac489eecca32a7, type: 3}
     - target: {fileID: 2530875219189941881, guid: 420511ceb2870444483a2ed7d9105923, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -278,7 +282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2530875219189941881, guid: 420511ceb2870444483a2ed7d9105923, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -130.1
+      value: -267
       objectReference: {fileID: 0}
     - target: {fileID: 2530875219189941881, guid: 420511ceb2870444483a2ed7d9105923, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -296,6 +300,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2923745292955660709, guid: 420511ceb2870444483a2ed7d9105923, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dbfdbc73c9c314cae88998a6418c5f95, type: 3}
     - target: {fileID: 3800575856899348095, guid: 420511ceb2870444483a2ed7d9105923, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -334,6 +342,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5425009203724854717}
     m_Modifications:
+    - target: {fileID: 332805957687763805, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dbfdbc73c9c314cae88998a6418c5f95, type: 3}
     - target: {fileID: 397964623646891756, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -342,6 +354,10 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4027420992034871120, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a71909a5ac83746cf94f8c0dbab5ee5f, type: 3}
     - target: {fileID: 4761280301458262457, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -551,6 +567,10 @@ PrefabInstance:
     - target: {fileID: 6803191417543095132, guid: 11cb691d1f9070949aa8553b07e8a568, type: 3}
       propertyPath: m_Name
       value: btnOpenProfile
+      objectReference: {fileID: 0}
+    - target: {fileID: 6803191417543095132, guid: 11cb691d1f9070949aa8553b07e8a568, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

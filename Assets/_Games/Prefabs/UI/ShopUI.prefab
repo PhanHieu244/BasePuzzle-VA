@@ -295,8 +295,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 93c89b9e0d6d54b49812ccf174d2f750, type: 3}
-  m_Type: 2
+  m_Sprite: {fileID: 21300000, guid: 79cd8a628894e46c28eb624669f24204, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -437,7 +437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8427514252526330919
 RectTransform:
   m_ObjectHideFlags: 0
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4deb1bc8a1ce194d91969d09e02afab, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc68cad0088ad47e7a874d2d23610dc3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1252,7 +1252,11 @@ PrefabInstance:
     - target: {fileID: 7151201755047410433, guid: eb64e4c9c53008747be1b43c77ee0502, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 06aced92b403844478010463a5245159, type: 3}
+      objectReference: {fileID: 21300000, guid: 4ff5177e225a64e298cfcc1309f7b403, type: 3}
+    - target: {fileID: 7151201755047410433, guid: eb64e4c9c53008747be1b43c77ee0502, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 1.86
+      objectReference: {fileID: 0}
     - target: {fileID: 8157655752448836935, guid: eb64e4c9c53008747be1b43c77ee0502, type: 3}
       propertyPath: m_Name
       value: BtnMoreOffer
@@ -1308,6 +1312,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 332805957687763805, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dbfdbc73c9c314cae88998a6418c5f95, type: 3}
     - target: {fileID: 397964623646891756, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -1336,6 +1344,10 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4027420992034871120, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a71909a5ac83746cf94f8c0dbab5ee5f, type: 3}
     - target: {fileID: 4761280301458262457, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -1446,7 +1458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6674034829295405165, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 15
+      value: 54
       objectReference: {fileID: 0}
     - target: {fileID: 6674034829295405165, guid: dbf9b88fac3d841418c397f50068efc2, type: 3}
       propertyPath: m_AnchoredPosition.y
