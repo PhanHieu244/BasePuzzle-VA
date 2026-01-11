@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameDataConst
 {
     public const string SCENE_MENU = "Home";
-    public const string SCENE_LEVEL = "GamePlay";
+    public const string SCENE_LEVEL = "GameScene";
 
     public static bool IsTurnOnRcmBooster()
     {

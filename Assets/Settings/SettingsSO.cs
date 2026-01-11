@@ -23,6 +23,7 @@ public class SettingsSO : ScriptableObject
     
     public int highScore = 0;
     public List<int> Scores;
+    public List<int> TargetScores;
 
     public GameObject grassPrefab;
     public GameObject dirtPrefab;

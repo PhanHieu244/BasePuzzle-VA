@@ -117,7 +117,7 @@ public class MMoveList : MonoBehaviour
         spawnedTile.transform.localPosition = new Vector3(0, -moveList.Count * 10, 0);
         spawnedTile.name = $"Tile {moveList.Count}";
         spawnedTile.GetComponent<Tile>().isInMoveList = true;
-        MUtils.SetGameLayerRecursive(spawnedTile.gameObject, LayerMask.NameToLayer("MoveList"));
+        MUtils.SetGameLayerRecursive(spawnedTile.gameObject, LayerMask.NameToLayer("OutlineBlue"));
         moveList.Add(spawnedTile.GetComponent<Tile>());
     }
 

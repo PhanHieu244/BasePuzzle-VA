@@ -30,6 +30,10 @@ public class ScoreManager : MonoBehaviour
     public SettingsSO settings;
 
     private HighScoresList highScoresList;
+    
+    public MGameManager gameManager;
+
+    private int targetScore;
 
     private void Awake()
     {
@@ -71,6 +75,11 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText.text = defaultScoreText + newScore;
         gameOverPanelScoreText.text = "Final " + defaultScoreText + newScore;
+
+        if (newScore >= targetScore)
+        {
+            gameManager.Win();
+        }
     }
     public void UpdateBonusScore(int bonusScore)
     {
@@ -79,6 +88,13 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateTarget(int targetScore)
     {
+        
+    }
+
+    public void SetTargetScore(int level)
+    {
+        level = Math.Min(level, settings.TargetScores.Count);
+        targetScore = settings.TargetScores[level];
         targetScoreText.text = defaultTargetText + targetScore;
     }
 

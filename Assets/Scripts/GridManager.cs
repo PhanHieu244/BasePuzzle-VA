@@ -144,7 +144,7 @@ public class GridManager : MonoBehaviour
     {
         spawnedTile.name = $"Tile {x} {z}";
         // MainGrid layer is only rendered by the main camera
-        MUtils.SetGameLayerRecursive(spawnedTile.gameObject, LayerMask.NameToLayer("MainGrid"));
+        MUtils.SetGameLayerRecursive(spawnedTile.gameObject, LayerMask.NameToLayer("2D"));
         spawnedTile.tileSelectedDelegate += HandleTileSelected;
         spawnedTile.scoreChangedDelegate += HandleScoreChanged;
         spawnedTile.position = new Point(x, z);
