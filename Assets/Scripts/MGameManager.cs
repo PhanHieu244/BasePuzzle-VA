@@ -53,8 +53,8 @@ public class MGameManager : MonoBehaviour
             yield return new WaitForSeconds(1); 
             _timer--;
         }
-        gameLose.SetActive(true);
-        StartCoroutine(ReturnToHome());
+
+        Lose();
     }
 
     public void GetMoreTime()
@@ -66,6 +66,8 @@ public class MGameManager : MonoBehaviour
             {
                 gold.Subtract(10);   
             }
+
+            _timer += 5;
         }
         else
         {
@@ -81,8 +83,18 @@ public class MGameManager : MonoBehaviour
         StartCoroutine(ReturnToHome());
     }
 
+    public void Lose()
+    {
+        StopAllCoroutines();
+        gameLose.SetActive(true);
+        StartCoroutine(ReturnToHome());
+    }
+
     IEnumerator ReturnToHome()
     {
+        moveListCamera.gameObject.SetActive(false);
+        yield return null;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         yield return new WaitForSeconds(2);
         LoadSceneManager.Instance.LoadScene("Home");
     }

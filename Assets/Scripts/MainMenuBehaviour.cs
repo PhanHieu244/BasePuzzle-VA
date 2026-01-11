@@ -16,9 +16,7 @@ public class MainMenuBehaviour : MonoBehaviour
     public SceneAsset mainMenuScene;
 #endif
     public GameObject mainMenu;
-    public GameObject gameOverMenu;
     public GameObject creditsMenu;
-    public GameObject currentMenu;
     public PlayerInput playerInput;
     [FormerlySerializedAs("gameManager")] public MGameManager mGameManager;
 
@@ -44,28 +42,17 @@ public class MainMenuBehaviour : MonoBehaviour
 
     public void HideMenu()
     {
-        if (currentMenu != null)
-        {
-            currentMenu.SetActive(false);
-            //playerInput.SwitchCurrentActionMap("GridControls");
-        }
-        currentMenu = null;
+       
 
     }
 
     public void ShowMenu(GameObject menuToShow)
     {
-        HideMenu();
-        currentMenu = menuToShow;
-        if (menuToShow != null)
-        {
-            menuToShow.SetActive(true);
-            //playerInput.SwitchCurrentActionMap("MenuControls");
-        }
+       
     }
 
     internal void ShowGameOverMenu()
     {
-        ShowMenu(gameOverMenu);
+        mGameManager.Lose();
     }
 }

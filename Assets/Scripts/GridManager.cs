@@ -144,7 +144,7 @@ public class GridManager : MonoBehaviour
     {
         spawnedTile.name = $"Tile {x} {z}";
         // MainGrid layer is only rendered by the main camera
-        MUtils.SetGameLayerRecursive(spawnedTile.gameObject, LayerMask.NameToLayer("2D"));
+        MUtils.SetGameLayerRecursive(spawnedTile.gameObject, LayerMask.NameToLayer("Water"));
         spawnedTile.tileSelectedDelegate += HandleTileSelected;
         spawnedTile.scoreChangedDelegate += HandleScoreChanged;
         spawnedTile.position = new Point(x, z);
@@ -238,7 +238,7 @@ public class GridManager : MonoBehaviour
             nextMove.transform
                 .DOMove(tile.transform.position, settings.tileMoveDuration)
                 .OnComplete(() => SetTile(tile, nextMove, true));
-            MUtils.SetGameLayerRecursive(nextMove.gameObject, LayerMask.NameToLayer("MainGrid"));
+            MUtils.SetGameLayerRecursive(nextMove.gameObject, LayerMask.NameToLayer("Water"));
             turnIsProcessed = false;
         }
     }
