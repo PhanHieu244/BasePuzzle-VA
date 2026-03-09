@@ -19,14 +19,14 @@ public class LoadTextureCoroutine : MonoBehaviour
     {
         if (currentCoroutine != null)
         {
-            GameController.Instance.StopCoroutine(currentCoroutine);
+            AGameController.Instance.StopCoroutine(currentCoroutine);
         }
     }
     public void ResetAndRunCoroutine(IEnumerator couroutine, UnityWebRequest uwr)
     {
         StopPreLoading();
         this.uwr = uwr;
-        currentCoroutine = GameController.Instance.StartCoroutine(couroutine);
+        currentCoroutine = AGameController.Instance.StartCoroutine(couroutine);
     }
 
     public void StopPreLoading()

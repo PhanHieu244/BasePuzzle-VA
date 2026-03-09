@@ -17,7 +17,7 @@ public class UI_Setting : BasePopup
 
     [Header("Language")] public Button btnLanguage;
     public TextMeshProUGUI txtLanguage;
-    public UIPopup popupLanguage;
+    public BaseUIPopup popupLanguage;
 
     [Header("Save Progress")] public Button btnSaveProgress;
 
@@ -63,7 +63,7 @@ public class UI_Setting : BasePopup
         });
 
         btnLanguage.onClick.RemoveAllListeners();
-        btnLanguage.onClick.AddListener(() => { UIManager.Instance.OpenPopup(popupLanguage); });
+        btnLanguage.onClick.AddListener(() => { BaseUIManager.Instance.OpenPopup(popupLanguage); });
 
         btnSaveProgress.onClick.RemoveAllListeners();
         btnSaveProgress.onClick.AddListener(() =>

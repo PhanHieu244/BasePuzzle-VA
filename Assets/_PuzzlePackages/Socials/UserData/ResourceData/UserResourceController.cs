@@ -149,7 +149,7 @@ public class UserResourceController : NMSingleton<UserResourceController>
 
             if (_couroutineUpdateHeart != null)
             {
-                GameController.Instance.StopCoroutine(_couroutineUpdateHeart);
+                AGameController.Instance.StopCoroutine(_couroutineUpdateHeart);
             }
 
             return;
@@ -185,10 +185,10 @@ public class UserResourceController : NMSingleton<UserResourceController>
 
         if (_couroutineUpdateHeart != null)
         {
-            GameController.Instance.StopCoroutine(_couroutineUpdateHeart);
+            AGameController.Instance.StopCoroutine(_couroutineUpdateHeart);
         }
 
-        _couroutineUpdateHeart = GameController.Instance.StartCoroutine(CoroutineUpdateHeart());
+        _couroutineUpdateHeart = AGameController.Instance.StartCoroutine(CoroutineUpdateHeart());
     }
 
     private Coroutine _couroutineUpdateHeart;
@@ -236,7 +236,7 @@ public class UserResourceController : NMSingleton<UserResourceController>
         }
 
 
-        GameController.UpdateDataToServer();
+        AGameController.UpdateDataToServer();
     }
 
     public bool IsMaxHeart()

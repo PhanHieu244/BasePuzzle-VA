@@ -9,7 +9,7 @@ using BasePuzzle;
 using BasePuzzle.PuzzlePackages.Core.UserData;
 using Object = System.Object;
 
-public class GameController : PersistentSingleton<GameController>
+public class AGameController : PersistentSingleton<AGameController>
 {
     private readonly static List<string> _deviceTests = new List<string>();
     private static bool _isDeviceTest;

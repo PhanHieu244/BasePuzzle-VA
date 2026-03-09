@@ -10,21 +10,21 @@ public class LevelDataController : NMSingleton<LevelDataController>
 {
     private const string key_en = "level_en";
 
-    private LevelData _levelData;
+    private ALevelData _aLevelData;
 
-    public LevelData LevelData
+    public ALevelData ALevelData
     {
-        get => _levelData;
+        get => _aLevelData;
     }
 
     public int Level
     {
-        get => _levelData.level;
+        get => _aLevelData.level;
     }
 
     public int NumPlay
     {
-        get => _levelData.numPlay;
+        get => _aLevelData.numPlay;
     }
 
     protected override void Init()
@@ -38,18 +38,18 @@ public class LevelDataController : NMSingleton<LevelDataController>
     {
         if (SaveLoadHandler.Exist(key_en))
         {
-            _levelData = SaveLoadHandler.Load<LevelData>(key_en);
+            _aLevelData = SaveLoadHandler.Load<ALevelData>(key_en);
         }
         else
         {
-            _levelData = new LevelData()
+            _aLevelData = new ALevelData()
             {
                 level = 1,
                 numPlay = 0
             };
         }
         
-        Debug.Log("Lost " + _levelData.numberLostAfterSupportPack);
+        Debug.Log("Lost " + _aLevelData.numberLostAfterSupportPack);
 
         if (SaveLoadHandler.NormalExist(key_max_level_server))
         {
@@ -63,7 +63,7 @@ public class LevelDataController : NMSingleton<LevelDataController>
 
     public void Save()
     {
-        SaveLoadHandler.Save(key_en, _levelData);
+        SaveLoadHandler.Save(key_en, _aLevelData);
     }
 
     public static Action onPlay;
@@ -71,7 +71,7 @@ public class LevelDataController : NMSingleton<LevelDataController>
     public void Play()
     {
 
-        _levelData.numPlay++;
+        _aLevelData.numPlay++;
         Save();
         onPlay?.Invoke();
     }
@@ -87,7 +87,7 @@ public class LevelDataController : NMSingleton<LevelDataController>
     private int _maxLevelFromServer;
     public int MaxLevelFromServer => _maxLevelFromServer;
     
-    public bool IsFirstTryLevel => _levelData.numPlay == 0;
+    public bool IsFirstTryLevel => _aLevelData.numPlay == 0;
 
     public void CheckSetMaxLevelFromServer(int maxLevel)
     {
@@ -123,7 +123,7 @@ public class LevelDataController : NMSingleton<LevelDataController>
 
     public bool IsPassLevelMax()
     {
-        return _levelData.level >= GetMaxLevel() && SaveLoadHandler.Exist(GetKeyPassLevelMax());
+        return _aLevelData.level >= GetMaxLevel() && SaveLoadHandler.Exist(GetKeyPassLevelMax());
     }
 
     private const string key_level_max_random = "lv_m_r";
@@ -147,13 +147,13 @@ public class LevelDataController : NMSingleton<LevelDataController>
 
     public void ResetLostBuy()
     {
-        _levelData.numberLostAfterSupportPack = 0;
+        _aLevelData.numberLostAfterSupportPack = 0;
     }
 
     public bool IsAvailableForBuySupportPack()
     {
-        Debug.Log("Lost " + _levelData.numberLostAfterSupportPack);
-        return _levelData.numberLostAfterSupportPack >= ConstantValue.LOST_TIMES_TO_SHOW_SUPPORT_PACK;
+        Debug.Log("Lost " + _aLevelData.numberLostAfterSupportPack);
+        return _aLevelData.numberLostAfterSupportPack >= ConstantValue.LOST_TIMES_TO_SHOW_SUPPORT_PACK;
     }
 
     private string GetKeyPassLevelMax()
@@ -166,10 +166,10 @@ public class LevelDataController : NMSingleton<LevelDataController>
     public void Lose()
     {
         onLose?.Invoke();
-        _levelData.totalLost++;
-        _levelData.numberLostAfterSupportPack++;
+        _aLevelData.totalLost++;
+        _aLevelData.numberLostAfterSupportPack++;
 
-        GameController.UpdateDataToServer();
+        AGameController.UpdateDataToServer();
     }
 
     public void CompleteLevel()
@@ -179,16 +179,16 @@ public class LevelDataController : NMSingleton<LevelDataController>
             _isPassedLevelMaxBefore = false;
             bool log = false;
             _levelJustPassed = 0;
-            if (_levelData.numPlay == 1)
+            if (_aLevelData.numPlay == 1)
             {
-                _levelData.firstTryWins++;
+                _aLevelData.firstTryWins++;
             }
 
-            if (_levelData.level < GetMaxLevel())
+            if (_aLevelData.level < GetMaxLevel())
             {
-                _levelData.level++;
-                _levelData.numPlay = 0;
-                _levelJustPassed = _levelData.level - 1;
+                _aLevelData.level++;
+                _aLevelData.numPlay = 0;
+                _levelJustPassed = _aLevelData.level - 1;
                 log = true;
             }
             else
@@ -204,7 +204,7 @@ public class LevelDataController : NMSingleton<LevelDataController>
                     _isPassedLevelMaxBefore = true;
                 }
 
-                _levelJustPassed = _levelData.level;
+                _levelJustPassed = _aLevelData.level;
                 // GenNewLevelMax();
             }
 
@@ -217,7 +217,7 @@ public class LevelDataController : NMSingleton<LevelDataController>
             Save();
             onCompleteLevel?.Invoke();
 
-            GameController.UpdateDataToServer();
+            AGameController.UpdateDataToServer();
 
         }
         catch (System.Exception e)
@@ -228,13 +228,13 @@ public class LevelDataController : NMSingleton<LevelDataController>
 
     public void UpdateDataFromServer(LevelDataServer levelData)
     {
-        _levelData.Update(levelData);
+        _aLevelData.Update(levelData);
 
         Save();
     }
 }
 
-public class LevelData
+public class ALevelData
 {
     public ObscuredInt level;
     public int         numPlay;
@@ -242,7 +242,7 @@ public class LevelData
     public int         totalLost;
     public int         numberLostAfterSupportPack;
 
-    public LevelData()
+    public ALevelData()
     {
         numberLostAfterSupportPack = ConstantValue.LOST_TIMES_TO_SHOW_SUPPORT_PACK;
     }

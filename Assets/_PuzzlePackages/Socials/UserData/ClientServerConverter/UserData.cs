@@ -30,18 +30,18 @@ public class LevelDataServer
     {
     }
 
-    public LevelDataServer(LevelData levelData)
+    public LevelDataServer(ALevelData aLevelData)
     {
-        Update(levelData);
+        Update(aLevelData);
     }
 
-    public void Update(LevelData levelData)
+    public void Update(ALevelData aLevelData)
     {
-        level                         = levelData.level;
-        numPlay                       = levelData.numPlay;
-        firstTryWins                  = levelData.firstTryWins;
-        totalLost                     = levelData.totalLost;
-        numberLostAfterSupportPack = levelData.numberLostAfterSupportPack;
+        level                         = aLevelData.level;
+        numPlay                       = aLevelData.numPlay;
+        firstTryWins                  = aLevelData.firstTryWins;
+        totalLost                     = aLevelData.totalLost;
+        numberLostAfterSupportPack = aLevelData.numberLostAfterSupportPack;
     }
 }
 

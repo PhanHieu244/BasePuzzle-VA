@@ -46,14 +46,14 @@ public class UI_Setting_SaveProgress_Status : BasePopup
         btnContinue.onClick.RemoveAllListeners();
         btnContinue.onClick.AddListener(() =>
         {
-            GetComponent<UIPopup>().OnClick_CloseThisPopup();
+            GetComponent<BaseUIPopup>().OnClick_CloseThisPopup();
             onClick?.Invoke();
         });
 
         btnTryAgain.onClick.RemoveAllListeners();
         btnTryAgain.onClick.AddListener(() =>
         {
-            GetComponent<UIPopup>().OnClick_CloseThisPopup();
+            GetComponent<BaseUIPopup>().OnClick_CloseThisPopup();
             onClick?.Invoke();
         });
     }

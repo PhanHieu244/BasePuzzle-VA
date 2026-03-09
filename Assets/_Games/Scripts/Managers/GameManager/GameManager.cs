@@ -200,21 +200,7 @@
 
         private void OnShowInterstitialAds(Action onEnd)
         {
-            GameController.Instance.CountShowInterstitial++;
-            if (GameController.Instance.CountShowInterstitial >=
-                ServerConfig.Instance<ValueRemoteConfig>().numInterstitialToShowRemoveAds)
-            {
-                GameController.Instance.CountShowInterstitial = 0;
-                WindowManager.Instance.OpenWindow<NoAdsPanel>(onLoaded: adsPanel =>
-                {
-                    adsPanel.SetInGame();
-                    adsPanel.SetActionOnClose(onEnd);
-                });
-            }
-            else
-            {
-                onEnd?.Invoke();
-            }
+           
         }
 
         private void LoadNextScene()

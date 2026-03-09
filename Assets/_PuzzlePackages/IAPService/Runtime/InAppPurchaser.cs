@@ -62,11 +62,13 @@ namespace BasePuzzle.PuzzlePackages.IAPService
             success?.Invoke(null);
             return;
 #endif
-
-            Handler.Purchase(productID, success, failure);
+            
         }
 
-        public static void RestorePurchase() { Handler.RestorePurchase(); }
+        public static void RestorePurchase()
+        {
+            //Handler.RestorePurchase();
+        }
 
         public static ProductMetadata GetProductMetadata(string productID) { return Handler.GetProductMetadata(productID); }
 

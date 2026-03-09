@@ -46,7 +46,7 @@ namespace PuzzleGames
 
         private void OnEnable()
         {
-            var localizedPrice = InAppPurchaser.GetLocalizedPrice(pack.ID.GetPurchasePKG());
+            var localizedPrice = InAppPurchaser.GetLocalizedPrice(pack.ID);
             if (!string.IsNullOrEmpty(localizedPrice))
                 _txtPrice.text = localizedPrice;
         }
@@ -54,7 +54,7 @@ namespace PuzzleGames
         public void ClickBtnPurchase()
         {
             AudioController.PlaySound(SoundKind.UIClickButton);
-            InAppPurchaser.Purchase(pack.ID.GetPurchasePKG(), OnSuccess, OnFailure);
+            InAppPurchaser.Purchase(pack.ID, OnSuccess, OnFailure);
         }
 
         private void OnSuccess(Product product)

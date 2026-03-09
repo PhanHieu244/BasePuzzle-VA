@@ -76,7 +76,7 @@ public class UIPopup_ViewProfile_Edit_Addon : MonoBehaviour
                 btnEdit.onClick.RemoveAllListeners();
                 btnEdit.onClick.AddListener(() =>
                 {
-                    UIManager.Instance.OpenPopup(ProfileAssetPaths.GetPath(AssetIDs.PROFILE_POPUP));
+                    BaseUIManager.Instance.OpenPopup(ProfileAssetPaths.GetPath(AssetIDs.PROFILE_POPUP));
                     AudioController.PlaySound(SoundKind.UIClickButton);
                 });
             }

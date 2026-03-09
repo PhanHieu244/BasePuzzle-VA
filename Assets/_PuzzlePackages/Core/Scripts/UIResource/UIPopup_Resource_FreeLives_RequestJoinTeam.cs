@@ -17,7 +17,7 @@ public class UIPopup_Resource_FreeLives_RequestJoinTeam : MonoBehaviour
         btnRequest.onClick.AddListener(() =>
         {
             //Đóng tất cả popup và cuộn scroll tới My Team
-            UIManager.Instance.CloseAllPopup();
+            BaseUIManager.Instance.CloseAllPopup();
             Navigator.Instance.MoveToTab(3);
         });
     }

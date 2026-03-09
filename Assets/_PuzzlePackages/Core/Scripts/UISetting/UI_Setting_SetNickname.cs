@@ -15,7 +15,7 @@ public class UI_Setting_SetNickname : MonoBehaviour
         btnContinue.onClick.RemoveAllListeners();
         btnContinue.onClick.AddListener(() =>
         {
-            GetComponent<UIPopup>().OnClick_CloseThisPopup(() =>
+            GetComponent<BaseUIPopup>().OnClick_CloseThisPopup(() =>
             {
                 UserInfoController.instance.SetName(inputName.text);
             });

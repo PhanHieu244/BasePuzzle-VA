@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class UIPopup : UIBase
+public class BaseUIPopup : UIBase
 {
     public bool isFullScreen;
     public bool isHalfFullScreen;
@@ -96,13 +96,13 @@ public class UIPopup : UIBase
 
     public void OnClick_CloseThisPopup()
     {
-        UIManager.Instance.ClosePopup(this);
+        BaseUIManager.Instance.ClosePopup(this);
     }
 
     public void OnClick_CloseThisPopup(Action onHide)
     {
         DOVirtual.DelayedCall(0.125f, () => onHide?.Invoke());
-        UIManager.Instance.ClosePopup(this);
+        BaseUIManager.Instance.ClosePopup(this);
     }
 
     public void ShowTween()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 #if EXIST_FB
+
 #endif
 using UnityEngine;
 #if UNITY_IOS
@@ -35,12 +36,12 @@ public class FacebookController : PersistentSingleton<FacebookController>, IBind
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     private void FBInitCallback()
     {
-        LogUtils.LogError("FBInitCallback");
-       
+
     }
 
     private void FBOnHideUnity(bool isGameShown)
@@ -105,7 +106,7 @@ public class FacebookController : PersistentSingleton<FacebookController>, IBind
 #if EXIST_FB
     private void AuthCallback(object result)
     {
-      
+
     }
 #endif
 

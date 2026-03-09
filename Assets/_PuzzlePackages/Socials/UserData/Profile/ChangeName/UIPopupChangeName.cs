@@ -24,7 +24,7 @@ public class UIPopupChangeName : MonoBehaviour
                     UserInfoController.instance.SetName(_inputField.text);
                 }
 
-                GetComponent<UIPopup>().OnClick_CloseThisPopup();
+                GetComponent<BaseUIPopup>().OnClick_CloseThisPopup();
             }
         });
     }

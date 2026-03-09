@@ -11,7 +11,7 @@ namespace PuzzleGames
         [TableList] public List<GoldPack>           GoldPacks;
         public             List<StandardPackBundle> StandardPackBundles;
 
-        public GoldPack GetGoldPack(PurchaseID packName)
+        public GoldPack GetGoldPack(string packName)
         {
             foreach (var goldPack in GoldPacks)
             {
@@ -25,7 +25,7 @@ namespace PuzzleGames
             return new GoldPack();
         }
 
-        public StandardPackBundle GetStandardPack(PurchaseID packName)
+        public StandardPackBundle GetStandardPack(string packName)
         {
             foreach (var standardPackBundle in StandardPackBundles)
             {
@@ -46,7 +46,7 @@ namespace PuzzleGames
     public struct GoldPack
     {
         [HideLabel] [VerticalGroup("Row/Details")]
-        public PurchaseID ID;
+        public string ID;
 
         [HorizontalGroup("Row", 100)]
         [HideLabel] // Ẩn label của ô Icon
@@ -69,7 +69,7 @@ namespace PuzzleGames
     [Serializable]
     public struct StandardPackBundle
     {
-        [HideLabel] public PurchaseID ID;
+        [HideLabel] public string ID;
 
         public PurchasePackage     Prefab;
         public string              bundleName;

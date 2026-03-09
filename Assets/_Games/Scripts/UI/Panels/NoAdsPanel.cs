@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class NoAdsPanel : BasePopup
 {
     [SerializeField] private ShopPackSO      _shopPack;
-    [SerializeField] private PurchaseID      _adsBundle;
+    [SerializeField] private string      _adsBundle;
     [SerializeField] private PurchasePackage _purchasePackage;
     [SerializeField] private Button          _btnBuy;
 

@@ -53,7 +53,7 @@ public class UIPopup_ViewProfile : MonoBehaviour
 
     public static void OpenUI(int code)
     {
-        UIManager.Instance.OpenPopup(ProfileAssetPaths.GetPath(AssetIDs.PROFILE_VIEW_PROFILE),
+        BaseUIManager.Instance.OpenPopup(ProfileAssetPaths.GetPath(AssetIDs.PROFILE_VIEW_PROFILE),
             p => { p.GetComponent<UIPopup_ViewProfile>().UpdateUI(code); });
     }
 
@@ -139,7 +139,7 @@ public class UIPopup_ViewProfile : MonoBehaviour
     {
         if (gameObject.activeInHierarchy)
         {
-            GetComponent<UIPopup>().OnClick_CloseThisPopup();
+            GetComponent<BaseUIPopup>().OnClick_CloseThisPopup();
         }
     }
 }

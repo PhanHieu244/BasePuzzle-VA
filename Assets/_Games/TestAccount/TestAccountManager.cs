@@ -53,7 +53,6 @@ public class TestAccountManager : MonoBehaviour
     public void ClickBtnPlay()
     {
         if (!int.TryParse(_iptLevel.text, out int level)) return;
-        LevelDataController.instance.LevelData.level = level;
         LevelLoader.LoadLevel(level);
     }
 

@@ -58,7 +58,7 @@ public class UIPopup_ViewProfile_Friend_Addon : MonoBehaviour
         btnRemoveFriend.onClick.RemoveAllListeners();
         btnRemoveFriend.onClick.AddListener(() =>
         {
-            UIManager.Instance.OpenPopup(ProfileAssetPaths.GetPath(AssetIDs.PROFILE_CONFIRM_ACTION), p =>
+            BaseUIManager.Instance.OpenPopup(ProfileAssetPaths.GetPath(AssetIDs.PROFILE_CONFIRM_ACTION), p =>
             {
                 var strTitle = LocalizationHelper.GetTranslation("remove_friend");
                 var strContent = LocalizationHelper.GetTranslation("team_info_remove_friends_des")

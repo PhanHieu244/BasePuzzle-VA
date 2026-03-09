@@ -91,7 +91,7 @@
 
 			if(currentLevelToLog>=LevelDataController.instance.Level)
 			{
-				LevelDataController.instance.LevelData.level=currentLevelToLog;
+				LevelDataController.instance.ALevelData.level=currentLevelToLog;
 				LevelDataController.instance.CompleteLevel();
 			}
 
@@ -106,7 +106,7 @@
 
 			if(currentLevelToLog>=LevelDataController.instance.Level)
 			{
-				LevelDataController.instance.LevelData.level=currentLevelToLog;
+				LevelDataController.instance.ALevelData.level=currentLevelToLog;
 				LevelDataController.instance.Lose();
 			}
 

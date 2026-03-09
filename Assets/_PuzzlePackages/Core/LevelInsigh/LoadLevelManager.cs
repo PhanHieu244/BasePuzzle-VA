@@ -61,7 +61,7 @@ namespace BasePuzzle.PuzzlePackages.Core
                 if (string.IsNullOrEmpty(decompressMapData))
                     throw new Exception($"Cannot decompress MapData: {data.mapData}");
 
-                var mapJson = JsonConvert.DeserializeObject<LevelData>(decompressMapData);
+                var mapJson = JsonConvert.DeserializeObject<ALevelData>(decompressMapData);
                 if (mapJson == null)
                     throw new Exception($"Cannot deserialize decompressMapData: {decompressMapData}");
             }

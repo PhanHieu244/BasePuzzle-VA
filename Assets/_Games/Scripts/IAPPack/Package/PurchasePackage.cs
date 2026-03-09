@@ -25,7 +25,7 @@ namespace PuzzleGames
 
         [SerializeField] private List<RewardInfo> _resourceUis = new();
 
-        private PurchaseID _purchaseID => _bundle.ID;
+        private string _purchaseID => _bundle.ID;
 
         private bool _isNoAdsPack => _bundle.RemoveAds;
 
@@ -54,7 +54,7 @@ namespace PuzzleGames
 
             txtPackName.SetText(_bundle.bundleName);
 
-            var localizedPrice = InAppPurchaser.GetLocalizedPrice(_purchaseID.GetPurchasePKG());
+            var localizedPrice = InAppPurchaser.GetLocalizedPrice(_purchaseID);
             if (!string.IsNullOrEmpty(localizedPrice))
                 _txtPrice.text = localizedPrice;
 
@@ -116,7 +116,7 @@ namespace PuzzleGames
         public void ClickBtnPurchase()
         {
             AudioController.PlaySound(SoundKind.UIClickButton);
-            InAppPurchaser.Purchase(_purchaseID.GetPurchasePKG(), OnSuccess, OnFailure);
+            InAppPurchaser.Purchase(_purchaseID, OnSuccess, OnFailure);
         }
 
         private void OnSuccess(Product product)

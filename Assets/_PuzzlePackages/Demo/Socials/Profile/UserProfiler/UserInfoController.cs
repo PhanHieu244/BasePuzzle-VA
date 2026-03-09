@@ -135,7 +135,7 @@ public class UserInfoController : NMSingleton<UserInfoController>
 
         Save();
 
-        GameController.UpdateDataToServer();
+        AGameController.UpdateDataToServer();
     }
 
     public void SetAvatar(int id)
@@ -161,7 +161,7 @@ public class UserInfoController : NMSingleton<UserInfoController>
     {
         _userInfo.frame_id = frame;
         Save();
-        GameController.UpdateDataToServer();
+        AGameController.UpdateDataToServer();
     }
 
     public void SetBadge(int badge)
@@ -212,7 +212,7 @@ public class UserInfoController : NMSingleton<UserInfoController>
                 avatar_url = UserInfo.avatar_url,
                 name = UserInfo.name,
                 //teamInfo = null,
-                firstTryWins = LevelDataController.instance.LevelData.firstTryWins
+                firstTryWins = LevelDataController.instance.ALevelData.firstTryWins
             };
         }
 
@@ -232,14 +232,14 @@ public class UserInfoController : NMSingleton<UserInfoController>
         _onGetUserInfoDetail = callBack;
         if (_coroutineGetInfo != null)
         {
-            GameController.Instance.StopCoroutine(_coroutineGetInfo);
+            AGameController.Instance.StopCoroutine(_coroutineGetInfo);
         }
 
        // GameController.SendMessage(new CSGetUserInfoDetail(code));
 
         if (_currentCode == AccountManager.instance.Code)
         {
-            _coroutineGetInfo = GameController.Instance.StartCoroutine(GetInfoTimeout());
+            _coroutineGetInfo = AGameController.Instance.StartCoroutine(GetInfoTimeout());
         }
     }
 
@@ -259,7 +259,7 @@ public class UserInfoController : NMSingleton<UserInfoController>
     {
         if (_coroutineGetInfo != null)
         {
-            GameController.Instance.StopCoroutine(_coroutineGetInfo);
+            AGameController.Instance.StopCoroutine(_coroutineGetInfo);
         }
 
         _userInfoDetail = userInfo;

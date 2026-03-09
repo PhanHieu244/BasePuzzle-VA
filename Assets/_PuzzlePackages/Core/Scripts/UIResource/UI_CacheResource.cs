@@ -26,7 +26,7 @@ public static class UI_CacheResource
     }
 
     public static bool IsWinLevel {
-        get => GameController.Instance.IsWinLevel;
+        get => AGameController.Instance.IsWinLevel;
     }
 
 

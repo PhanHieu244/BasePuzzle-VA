@@ -6,7 +6,7 @@ using DG.Tweening.Plugins.Core.PathCore;
 using UnityEngine.SceneManagement;
 using Path = System.IO.Path;
 
-public class UIManager : Singleton<UIManager>
+public class BaseUIManager : Singleton<BaseUIManager>
 {
     #region Menus
 
@@ -20,16 +20,16 @@ public class UIManager : Singleton<UIManager>
     #region Pop-ups
 
     [Tooltip("All the popups in the scene.")]
-    public List<UIPopup> AllPopups = new List<UIPopup>();
+    public List<BaseUIPopup> AllPopups = new List<BaseUIPopup>();
 
-    [HideInInspector] public UIPopup CurActivePopup;
+    [HideInInspector] public BaseUIPopup CurActivePopup;
 
     #endregion
 
     [Header("Store - UIPopup")] public RectTransform rootStorePopup;
 
     private bool canEsc = true;
-    private List<UIPopup> stack = new List<UIPopup>();
+    private List<BaseUIPopup> stack = new List<BaseUIPopup>();
 
     protected override void Awake()
     {
@@ -99,7 +99,7 @@ public class UIManager : Singleton<UIManager>
 
 
 #if UNITY_EDITOR
-    [Header("Editor")] public List<UIPopup> popupGenerate = new List<UIPopup>();
+    [Header("Editor")] public List<BaseUIPopup> popupGenerate = new List<BaseUIPopup>();
 
     [Sirenix.OdinInspector.Button]
     public void GenerateSceneContainPopup()
@@ -270,16 +270,16 @@ public class UIManager : Singleton<UIManager>
 
     #region Pop-up Functions
 
-    public Dictionary<string, Action<UIPopup>> dicActionOnOpenPopup = new Dictionary<string, Action<UIPopup>>();
+    public Dictionary<string, Action<BaseUIPopup>> dicActionOnOpenPopup = new Dictionary<string, Action<BaseUIPopup>>();
 
     /// <summary>
     /// Open a popup by name.
     /// </summary>
     /// <param name="popupPath">The path of the popup gameObject.</param>
-    public void OpenPopup(string popupPath, Action<UIPopup> callback = null)
+    public void OpenPopup(string popupPath, Action<BaseUIPopup> callback = null)
     {
         var popupName = Path.GetFileNameWithoutExtension(popupPath);
-        foreach (UIPopup p in AllPopups)
+        foreach (BaseUIPopup p in AllPopups)
         {
             if (p == null) continue;
 
@@ -315,7 +315,7 @@ public class UIManager : Singleton<UIManager>
     /// Open a popup by reference.
     /// </summary>
     /// <param name="popup"></param>
-    public void OpenPopup(UIPopup popup, Action<UIPopup> callback = null)
+    public void OpenPopup(BaseUIPopup popup, Action<BaseUIPopup> callback = null)
     {
         popup.ChangeVisibility(true);
 
@@ -330,7 +330,7 @@ public class UIManager : Singleton<UIManager>
         callback?.Invoke(popup);
     }
 
-    public void OpenPopupIE(UIPopup popup, Action onShow)
+    public void OpenPopupIE(BaseUIPopup popup, Action onShow)
     {
         StartCoroutine(IEOpenPopup());
 
@@ -375,7 +375,7 @@ public class UIManager : Singleton<UIManager>
     /// </summary>
     public void ClosePopup(string popupName)
     {
-        foreach (UIPopup p in AllPopups)
+        foreach (BaseUIPopup p in AllPopups)
         {
             if (p.name == popupName)
             {
@@ -392,7 +392,7 @@ public class UIManager : Singleton<UIManager>
     /// <summary>
     /// Close popup by reference, only if its opened.
     /// </summary>
-    public void ClosePopup(UIPopup popup)
+    public void ClosePopup(BaseUIPopup popup)
     {
         popup.ChangeVisibility(false);
         stack.Remove(popup);
@@ -414,15 +414,15 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    private void RegisterPopupStack(UIPopup popup)
+    private void RegisterPopupStack(BaseUIPopup popup)
     {
         stack.Remove(popup);
         stack.Add(popup);
     }
 
-    private UIPopup GetTopMostPopupStack()
+    private BaseUIPopup GetTopMostPopupStack()
     {
-        UIPopup nextPopup = null;
+        BaseUIPopup nextPopup = null;
         for (var i = stack.Count - 1; i >= 0; i--)
         {
             var popup = stack[i];
@@ -455,7 +455,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public List<UIPopup> GetAllPopupStack()
+    public List<BaseUIPopup> GetAllPopupStack()
     {
         return stack;
     }

@@ -10,9 +10,9 @@ using Object = UnityEngine.Object;
 
 public static class UILoadPopupUltis
 {
-    public static Dictionary<string, Action<UIPopup>> dicActionOnOpenPopup = new Dictionary<string, Action<UIPopup>>();
+    public static Dictionary<string, Action<BaseUIPopup>> dicActionOnOpenPopup = new Dictionary<string, Action<BaseUIPopup>>();
 
-    public static void LoadPopup(string path, string name, Action<UIPopup> action)
+    public static void LoadPopup(string path, string name, Action<BaseUIPopup> action)
     {
         dicActionOnOpenPopup[name] = action;
         // SceneManager.LoadScene(sceneName, new LoadSceneParameters(LoadSceneMode.Additive));

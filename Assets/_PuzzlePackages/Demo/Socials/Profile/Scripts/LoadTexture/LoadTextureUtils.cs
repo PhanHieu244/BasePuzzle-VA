@@ -62,7 +62,7 @@ public static class LoadTextureUtils
         };
 
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(urlAvatar);
-        GameController.Instance.StartCoroutine(DownloadAvatarTexture(www, avatar, callbackSuccess, callbackFailed));
+        AGameController.Instance.StartCoroutine(DownloadAvatarTexture(www, avatar, callbackSuccess, callbackFailed));
 
     }
     private static void SaveTextureToFile(Texture2D texture, string path)
@@ -112,7 +112,7 @@ public static class LoadTextureUtils
             UnityWebRequest www = UnityWebRequestTexture.GetTexture(urlAvatar);
             if (target == null)
             {
-                GameController.Instance.StartCoroutine(DownloadImageFromUrl(www, image, callback));
+                AGameController.Instance.StartCoroutine(DownloadImageFromUrl(www, image, callback));
                 return;
             }
 
@@ -146,7 +146,7 @@ public static class LoadTextureUtils
             UnityWebRequest www = UnityWebRequestTexture.GetTexture(urlAvatar);
             if (target == null)
             {
-                GameController.Instance.StartCoroutine(DownloadRawImageFromUrl(www, rawImage, callback));
+                AGameController.Instance.StartCoroutine(DownloadRawImageFromUrl(www, rawImage, callback));
                 return;
             }
 

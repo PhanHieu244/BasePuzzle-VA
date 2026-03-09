@@ -6,13 +6,13 @@ using UnityEngine;
 public class SetupPopup : MonoBehaviour
 {
     string nameCallback;
-    UIPopup uIPopup;
+    BaseUIPopup uIPopup;
 
     private void Awake()
     {
         //Create UI
         name = name.Replace("(Clone)", "").Trim();
-        uIPopup = GetComponent<UIPopup>();
+        uIPopup = GetComponent<BaseUIPopup>();
         nameCallback = uIPopup.name;
     }
 

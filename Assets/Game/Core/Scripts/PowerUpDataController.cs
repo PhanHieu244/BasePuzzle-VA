@@ -156,7 +156,6 @@ public class PowerUpDataController : NMSingleton<PowerUpDataController>
 
         // TODO Current Level
         //new FPropertyLog("use_power_up", powerup.ToString(), 0, 0).Send();
-        GameController.UpdateDataToServer();
     }
 
     public static Action<int> onUsePowerup;

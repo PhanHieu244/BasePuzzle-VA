@@ -59,12 +59,12 @@ namespace PuzzleGames
 		{
 			var levelData=JsonConvert.DeserializeObject<TxtLevelData>(txt);
 			var mapJson  =JsonCompressing.Decompressing(levelData.mapData);
-			var mapData  =JsonConvert.DeserializeObject<LevelData>(mapJson);
+			var mapData  =JsonConvert.DeserializeObject<ALevelData>(mapJson);
 
 			CreateMap(mapData,true);
 		}
 
-		private void CreateMap(LevelData data,bool forScreenShot=false) { }
+		private void CreateMap(ALevelData data,bool forScreenShot=false) { }
 
 		/// <summary>
 		/// Direct call from UIs, Test

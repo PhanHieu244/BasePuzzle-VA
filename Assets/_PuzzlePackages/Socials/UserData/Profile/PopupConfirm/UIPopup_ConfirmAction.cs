@@ -20,7 +20,7 @@ public class UIPopup_ConfirmAction : MonoBehaviour
         btnNo.onClick.RemoveAllListeners();
         btnNo.onClick.AddListener(() =>
         {
-            GetComponent<UIPopup>().OnClick_CloseThisPopup();
+            GetComponent<BaseUIPopup>().OnClick_CloseThisPopup();
         });
     }
 
@@ -33,7 +33,7 @@ public class UIPopup_ConfirmAction : MonoBehaviour
         btnYes.onClick.AddListener(() =>
         {
             onClickYes?.Invoke();
-            GetComponent<UIPopup>().OnClick_CloseThisPopup();
+            GetComponent<BaseUIPopup>().OnClick_CloseThisPopup();
         });
 
         rectWarning.gameObject.SetActive(false);

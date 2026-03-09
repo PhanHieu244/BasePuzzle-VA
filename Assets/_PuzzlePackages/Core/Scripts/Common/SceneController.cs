@@ -41,7 +41,7 @@ public class SceneController : NMSingleton<SceneController>
         {
             return;
         }
-        if (GameController.HasInstance)
+        if (AGameController.HasInstance)
         {
             //GameController.Instance.StartCoroutine(CoroutineLoadScene(SceneState.Menu, GameDataConst.SCENE_MENU));
         }
@@ -53,7 +53,7 @@ public class SceneController : NMSingleton<SceneController>
         {
             return;
         }
-        if (GameController.HasInstance)
+        if (AGameController.HasInstance)
         {
             //GameController.Instance.StartCoroutine(CoroutineLoadScene(SceneState.Level, GameDataConst.SCENE_LEVEL));
         }

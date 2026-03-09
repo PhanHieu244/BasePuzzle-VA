@@ -60,7 +60,7 @@ public class UI_Setting_SaveProgress : BasePopup
 
         void SignOut()
         {
-            UIManager.Instance.OpenPopup(ProfileAssetPaths.GetPath(AssetIDs.PROFILE_CONFIRM_ACTION), p =>
+            BaseUIManager.Instance.OpenPopup(ProfileAssetPaths.GetPath(AssetIDs.PROFILE_CONFIRM_ACTION), p =>
             {
                 var strTitle = LocalizationHelper.GetTranslation("bind_data_are_you_sure_title");
                 var strContent = LocalizationHelper.GetTranslation("bind_data_are_you_sure_des");
@@ -91,12 +91,12 @@ public class UI_Setting_SaveProgress : BasePopup
     private void OnSignIn(BindDataType bindDataType)
     {
         UpdateUI();
-        GetComponent<UIPopup>().OnClick_CloseThisPopup();
+        GetComponent<BaseUIPopup>().OnClick_CloseThisPopup();
     }
 
     private void OnSignInFail(BindDataType bindDataType)
     {
-        GetComponent<UIPopup>().OnClick_CloseThisPopup();
+        GetComponent<BaseUIPopup>().OnClick_CloseThisPopup();
     }
 
     private void UpdateUI()

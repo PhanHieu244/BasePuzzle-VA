@@ -17,7 +17,7 @@ public class UIPopup_Resource_FreeLives : BasePopup
 
     [Header("Empty")] public RectTransform rectEmpty;
     public Button btnRequestEmpty;
-    public UIPopup popupRequestJoinTeam;
+    public BaseUIPopup popupRequestJoinTeam;
 
     private bool initGridView;
 
@@ -35,13 +35,13 @@ public class UIPopup_Resource_FreeLives : BasePopup
                 if (isHaveTeam)
                 {
                     //Đóng tất cả popup và cuộn scroll tới My Team
-                    UIManager.Instance.CloseAllPopup();
+                    BaseUIManager.Instance.CloseAllPopup();
                     Navigator.Instance.MoveToTab(3);
                 }
                 else
                 {
                     //Hiện Popup vào một Team
-                    UIManager.Instance.OpenPopup(popupRequestJoinTeam);
+                    BaseUIManager.Instance.OpenPopup(popupRequestJoinTeam);
                 }
             }
             else
